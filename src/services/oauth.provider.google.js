@@ -11,9 +11,9 @@ export class OAuthGoogleProvider extends OAuthProvider
 
 		this.url = "https://accounts.google.com/o/oauth2/v2";
 
-		this.client_id = container.get('env').oauth.google.client_id;
-		this.client_secret = container.get('env').oauth.google.client_secret;
-		this.redirect_uri = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/oauth/google/token";
+		this.client_id = container.get('env').oauth.google.client.id;
+		this.client_secret = container.get('env').oauth.google.client.secret;
+		this.redirect_uri = container.get('env').oauth.google.redirect;
 	}
 
 	getAuthorizeUrl()

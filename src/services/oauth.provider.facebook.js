@@ -9,9 +9,9 @@ export class OAuthFacebookProvider extends OAuthProvider
 		super();
 		this.url = "https://www.facebook.com/v2.9";
 
-		this.client_id = container.get('env').oauth.facebook.client_id;
-		this.client_secret = container.get('env').oauth.facebook.client_secret;
-		this.redirect_uri = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/oauth/facebook/token";
+		this.client_id = container.get('env').oauth.facebook.client.id;
+		this.client_secret = container.get('env').oauth.facebook.client.secret;
+		this.redirect_uri = container.get('env').oauth.facebook.redirect;
 	}
 
 	getAuthorizeUrl()
