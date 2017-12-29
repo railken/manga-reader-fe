@@ -168,6 +168,10 @@ ul,li{
 .error {
   color: #E53935;
 }
+.text-error {
+  font-size: 14px;
+  
+}
 
 .form-control:not(:placeholder-shown):invalid ~ label{
   color: #E53935;

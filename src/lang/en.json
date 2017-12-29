@@ -1,0 +1,7 @@
+{
+	"auth": {
+		"provider": {
+			"email_not_found": "Login failed. An email address is required. Please add one and try again."
+		}
+	}
+}
