@@ -11,17 +11,17 @@ export default new Router({
     routes: [
         {
           path: '/',
-          name: 'Main',
+          name: 'main',
           component: Main
         },
         {
           path: '/sign-in',
-          name: 'SignIn',
+          name: 'sign-in',
           component: SignIn
         },
         {
             path: '/oauth/:provider/token',
-            name: 'SignInOauthToken',
+            name: 'sign-in-token',
             component: SignInOauthToken
         },
     ]
