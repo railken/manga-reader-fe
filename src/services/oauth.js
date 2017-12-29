@@ -38,7 +38,7 @@ export class OAuth
 		var r = container.get('services.client');
 
 		var r1 = function(params) {
-			r.basicCall("GET", container.get('env').api.url+"/oauth/"+provider_name+"/access_token", {
+			r.basicCall("POST", container.get('env').api.url+"/oauth/"+provider_name+"/access_token", {
 				params: params , 
 				success: function(response) {
 					r2(params, response.access_token);
@@ -52,7 +52,7 @@ export class OAuth
 
 		var r2 = function(params, access_token) {
 			params.access_token = access_token;
-			r.basicCall("GET", container.get('env').api.url+"/oauth/"+provider_name+"/exchange_token", {
+			r.basicCall("POST", container.get('env').api.url+"/oauth/"+provider_name+"/exchange_token", {
 				params: params, 
 				success: function(response) {
         			container.get('services.cookies').set(container.get('env').cookies.token, response.access_token);
