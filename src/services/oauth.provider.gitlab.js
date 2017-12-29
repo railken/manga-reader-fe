@@ -10,9 +10,9 @@ export class OAuthGitlabProvider extends OAuthProvider
 		super();
 		this.url = "https://gitlab.com/oauth";
 
-		this.client_id = container.get('env').oauth.gitlab.client_id;
-		this.client_secret = container.get('env').oauth.gitlab.client_secret;
-		this.redirect_uri = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '') + "/oauth/gitlab/token";
+		this.client_id = container.get('env').oauth.gitlab.client.id;
+		this.client_secret = container.get('env').oauth.gitlab.client.secret;
+		this.redirect_uri = container.get('env').oauth.gitlab.redirect;
 	}
 
 	getAuthorizeUrl()
