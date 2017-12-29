@@ -14,11 +14,13 @@ import { Api } from './services/api';
 import Notifications from 'vue-notification';
 import VueLocalStorage from 'vue-localstorage';
 import BootstrapVue from 'bootstrap-vue';
+import VueI18n from 'vue-i18n';
 
 
 Vue.use(BootstrapVue);
 Vue.use(VueLocalStorage);
 Vue.use(Notifications);
+Vue.use(VueI18n);
     
 
 
@@ -58,6 +60,12 @@ container.get('date').locale('en', {
 
 
 new Vue({
+	i18n: new VueI18n({
+	    locale: 'en',
+	    messages: {
+	      en: require('./lang/en.json'),
+	    }
+	}),
   	el: '#app',
   	router,
   	template: '<App/>',
