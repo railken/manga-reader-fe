@@ -1,0 +1,23 @@
+
+
+# Manga Reader
+
+1) Ricerca i manga per titolo e/o genere.
+2) Visualizzre i dettagli un manga
+3) Visualizzare i capitoli di un manga
+4) Visualizzare le raw di un capitolo + dettagli (e.g. next/prev)
+5) Impostare un capitolo come letto
+6) Aggiungere un manga alla libreria
+7) Impostare uno status al manga
+8) Abilitare/disattivare "mark reads"
+9) Impostare un capitolo come letto/non letto
+10) Visualizzare i capitoli usciti
+
+
+---------------------------
+
+1) Utente si registra. 
+
+
+3) Invia
+Login con token per recupero password
