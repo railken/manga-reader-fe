@@ -5,36 +5,39 @@
                 <div >
                     <!--<img class='logo' src='../assets/logo.png'>-->
                     
-                    <h4>{{ $t("auth.signin.title") }}</h4>
+                    <h4>{{ $t("auth.signup.title") }}</h4>
                     <p> </p>
-                    <form class='form' method="POST" v-on:submit.prevent="login();">
-                        <div class='form-group' v-bind:class="{error: error}">
-                            <input type='text' class='form-control' v-model="form.username" placeholder=' ' required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" >
+                    {{ errors }}
+                    <form class='form' method="POST" v-on:submit.prevent="register();">
+                        <div class='form-group' v-bind:class="{error: errors.find(function(v) { return v.label === 'username'; })}">
+                            <input type='text' class='form-control' v-model="form.username" placeholder=' ' required >
                             <span class="form-highlight"></span>
-                            <label>{{ $t("auth.signin.username") }}</label>
+                            <label>{{ $t("auth.signup.username") }}</label>
                         </div>
-                        <div class='form-group' v-bind:class="{error: error}">
+                        <div class='form-group' v-bind:class="{error: errors.find(function(v) { return v.label === 'email'; })}">
+                            <input type='text' class='form-control' v-model="form.email" placeholder=' ' required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" >
+                            <span class="form-highlight"></span>
+                            <label>{{ $t("auth.signup.email") }}</label>
+                        </div>
+                        <div class='form-group' v-bind:class="{error: errors.find(function(v) { return v.label === 'password'; })}">
                             <input type='password' class='form-control' v-model="form.password"  placeholder=' ' required >
                             <span class="form-highlight"></span>
-                            <label>{{ $t("auth.signin.password") }}</label>
+                            <label>{{ $t("auth.signup.password") }}</label>
                         </div>
-                        <div class="error">{{ error }}&nbsp;</div> 
                         <div class='fluid'>
                             <div class='fill'></div>
-                            <p><router-link :to="{ name: 'forgot-password'}" class='url url-light'>{{ $t("auth.signin.forgot_password.url") }}</router-link></p>
                         </div>
-                        <button class='btn btn-block btn-primary'>{{ $t("auth.signin.button") }}</button>
+                        <button class='btn btn-block btn-primary'>{{ $t("auth.signup.button") }}</button>
                     </form>
                 </div>
 
-                    <p>{{ $t('auth.signin.confirmation_email.label') }} <router-link :to="{ name: 'sign-up'}" class='url url-light'>{{ $t('auth.signin.confirmation_email.url') }}</router-link></p>
-                    <p>{{ $t('auth.signin.signup.label') }} <router-link :to="{ name: 'sign-up'}" class='url url-light'>{{ $t('auth.signin.signup.url') }}</router-link></p>
+                <p>{{ $t('auth.signup.confirmation_email.label') }} <router-link :to="{ name: 'sign-up'}" class='url url-light'>{{ $t('auth.signup.confirmation_email.url') }}</router-link></p>
             </div>
 
             <div class='paper content container-signin'>
                 <div class='box'>
                     <div class='container-login-provider fluid fluid-center'>
-                        <div class='login-provider-title'> {{ $t("auth.signin.providers") }}</div>
+                        <div class='login-provider-title'> {{ $t("auth.signup.providers") }}</div>
                         <button class="btn btn-social-icon btn-social btn-gitlab" v-on:click="login('gitlab');">
                             <span class="fa fa-gitlab"></span>
                         </button>
@@ -63,30 +66,29 @@
 import { container } from '../services/container'
 
 export default {
-    name: 'SignIn',
+    name: 'SignUp',
     data () {
         return {
             nav: false,
             form: {},
-            error: null
+            errors: []
         }
     },
     methods: {
         login (provider) {
+            container.get('services.oauth').providerSignIn(provider);
+        },
+        register () {
 
-
-            if (provider) {
-
-                container.get('services.oauth').providerSignIn(provider);
-
-            } else {
-
-                container.get('services.oauth').signIn(this.form).then(response => {
-                    window.location.href = "/";
-                }).catch(response => {
-                    this.error = this.$t(response.body.code.toLowerCase());
+            container.get('services.oauth').signUp(this.form).then(response => {
+                alert('registered');
+            }).catch(response => {
+                var self = this;
+                this.errors = response.body.errors.map(function(error) {
+                    return {label: error.label, message: self.$t(error.code.toLowerCase())};
                 });
-            }
+                console.log(this.errors);
+            });
         }
     },
     mounted () {

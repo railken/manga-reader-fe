@@ -33,24 +33,16 @@
         mounted () 
         {
 
-            var self = this;
         	var params = container.get('request').query;
         	var provider = this.$route.params.provider;
-            console.log('a');
             self.loading = true;
-        	container.get('services.oauth').providerSignInCode(provider, {
-        		params: params,
-        		success: function(response) {
-        			window.location.href = "/";
-                    // self.loading = false;
-        		},
-        		error: function(response) {
-                    console.log(response);
-                    self.error = self.$t(response.code.toLowerCase());
-
-                    // container.get('router').push({ name: 'sign-in'});
-                    self.loading = false;
-        		}
+        	container.get('services.oauth').providerSignInCode(provider, params).then(response => {
+    			window.location.href = "/";
+    		}).catch(error => {
+                this.error = this.$t(error.body.code.toLowerCase());
+                // container.get('router').push({ name: 'sign-in'});
+                this.loading = false;
+    		
         	});
 
         }

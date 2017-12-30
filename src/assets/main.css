@@ -216,5 +216,22 @@ body {
 }
 
 .btn-primary:hover {
-  background: #7c7c97;
+  background-color: #505061;
+}
+
+.btn-primary:active, .btn-primary:focus {
+  background-color: #676777 !important;
+  box-shadow: 0 0 0 0.2rem rgba(136, 127, 179, 0.50) !important;
+}
+
+.url {
+
+}
+
+.url-light {
+    color: #c2c2dc;
+}
+
+.url-light:hover {
+    color: #d5d5e6;
 }

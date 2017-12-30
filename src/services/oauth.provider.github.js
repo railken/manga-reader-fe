@@ -4,7 +4,7 @@ import { container } from './container';
 export class OAuthGithubProvider extends OAuthProvider
 {
 
-
+	
 	constructor()
 	{
 		super();

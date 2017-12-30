@@ -5,10 +5,36 @@
 			"code_not_valid": "The code provided is invalid. Try again"
 		},
 		"credentials_not_valid": "Login failed. Invalid username or password",
-		"title": "Sign in",
-		"username": "Username or Email",
-		"password": "Password",
-		"button-signin": "Sign in",
-		"signin-providers": "Otherwise sign in with"
+		"signin": {
+			"username": "Username or Email",
+			"password": "Password",
+			"button": "Sign in",
+			"providers": "Sign in with",
+			"title": "Sign in",
+			"confirmation_email": {
+				"label": "Didn't receive a confirmation email?",
+				"url": "Request a new one"
+			},
+				"signup": {
+				"label": "No account?",
+				"url": "Register one here"
+			},
+			"forgot_password": {
+				"label": "",
+				"url": "Forgot your password?"
+			}
+		},
+		"signup": {
+			"username": "Username",
+			"email": "Email",
+			"password": "Password",
+			"button": "Sign Up",
+			"providers": "Sign up with",
+			"title": "Sign Up",
+			"confirmation_email": {
+				"label": "Didn't receive a confirmation email?",
+				"url": "Request a new one"
+			}
+		}
 	}
 }

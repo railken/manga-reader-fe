@@ -9,8 +9,6 @@ import router from './router'
 import { OAuth } from './services/oauth';
 import { container } from './services/container';
 import * as Cookies from "js-cookie";
-import { Client } from './services/client';
-import { Api } from './services/api';
 import Notifications from 'vue-notification';
 import VueLocalStorage from 'vue-localstorage';
 import BootstrapVue from 'bootstrap-vue';
@@ -47,9 +45,6 @@ container.set('request', {
 
 container.set('services.oauth', new OAuth());
 container.set('services.cookies', Cookies);
-
-container.set('services.client', new Client());
-container.set('services.api', new Api());
 
 container.set('date', require('moment'));
 container.get('date').locale('en', {

@@ -24,16 +24,10 @@ export default {
     },
     mounted() {
 
-        var self = this;
-        container.get('services.oauth').loadUser({
-            success: function(response) {
-                container.set('user', response.data.resource);
-                self.user = response.data.resource;
-                console.log(container.get('user'));
-            },
-            error: function() {
+        container.get('services.oauth').getUser().then(response => {
+            this.user = response.body.data.resource;
+        }).catch(error => {
 
-            }
         });
     }
 }
