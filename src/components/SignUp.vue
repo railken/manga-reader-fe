@@ -6,24 +6,28 @@
                     <!--<img class='logo' src='../assets/logo.png'>-->
                     
                     <h4>{{ $t("auth.signup.title") }}</h4>
-                    <p> </p>
-                    {{ errors }}
                     <form class='form' method="POST" v-on:submit.prevent="register();">
                         <div class='form-group' v-bind:class="{error: errors.find(function(v) { return v.label === 'username'; })}">
                             <input type='text' class='form-control' v-model="form.username" placeholder=' ' required >
                             <span class="form-highlight"></span>
                             <label>{{ $t("auth.signup.username") }}</label>
                         </div>
+
+                        <span class='message-error' v-if="errors.find(function(v) { return v.label === 'username'; })">{{ errors.find(function(v) { return v.label === "username"; }).message}}</span>
                         <div class='form-group' v-bind:class="{error: errors.find(function(v) { return v.label === 'email'; })}">
                             <input type='text' class='form-control' v-model="form.email" placeholder=' ' required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" >
                             <span class="form-highlight"></span>
                             <label>{{ $t("auth.signup.email") }}</label>
                         </div>
+
+                        <span class='message-error' v-if="errors.find(function(v) { return v.label === 'email'; })">{{ errors.find(function(v) { return v.label === "email"; }).message}}</span>
                         <div class='form-group' v-bind:class="{error: errors.find(function(v) { return v.label === 'password'; })}">
                             <input type='password' class='form-control' v-model="form.password"  placeholder=' ' required >
                             <span class="form-highlight"></span>
                             <label>{{ $t("auth.signup.password") }}</label>
                         </div>
+
+                        <span class='message-error' v-if="errors.find(function(v) { return v.label === 'password'; })">{{ errors.find(function(v) { return v.label === "password"; }).message}}</span>
                         <div class='fluid'>
                             <div class='fill'></div>
                         </div>
