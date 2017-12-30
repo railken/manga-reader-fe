@@ -9,8 +9,7 @@
             <div v-if='!loading' class=''>
                 <div class='content'>
                     <div class='error text-error'>
-                        {{ $t('auth.provider.email_not_found') }}.
-
+                        {{ error }}
                     </div>
                     <br><br>
                     <router-link class='btn btn-primary' :to="{ name: 'sign-in'}">Back to sign in</router-link>
@@ -43,11 +42,11 @@
         		params: params,
         		success: function(response) {
         			window.location.href = "/";
-                    self.loading = false;
+                    // self.loading = false;
         		},
         		error: function(response) {
                     console.log(response);
-                    self.error = response.message;
+                    self.error = self.$t(response.code.toLowerCase());
 
                     // container.get('router').push({ name: 'sign-in'});
                     self.loading = false;
