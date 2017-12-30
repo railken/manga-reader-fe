@@ -89,6 +89,13 @@ export class OAuth
         return this.api.getUser(access_token);
 	}
 
+	confirmEmail(params)
+	{
+		return this.api.confirmEmail(params).then(response => {
+			this.setCookieToken(response.body.access_token);
+		});
+	}
+
 	logout()
 	{
 		container.get('services.cookies').remove(container.get('env').cookies.token);

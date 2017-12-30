@@ -209,6 +209,7 @@ body {
   outline: none;
   border: none;
   border-radius: 0;
+  text-decoration: none;
 }
 
 .btn-primary {

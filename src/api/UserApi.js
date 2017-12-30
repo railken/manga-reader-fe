@@ -78,4 +78,16 @@ export class UserApi
         }});
 	}
 
+	/**
+	 * Confirm email 
+	 *
+	 * @param {Object} params
+	 *
+	 * @return {Promise}
+	 */
+	confirmEmail(params)
+	{
+		return Vue.http.post(this.url+"/confirm-email", params);
+	}
+
 };

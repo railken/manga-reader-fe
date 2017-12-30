@@ -35,6 +35,9 @@
 				"label": "Didn't receive a confirmation email?",
 				"url": "Request a new one"
 			}
+		},
+		"signup-confirmed": {
+			"message": "We sent an email at {email}."
 		}
 	}
 }

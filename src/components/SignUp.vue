@@ -15,7 +15,7 @@
 
                         <span class='message-error' v-if="errors.find(function(v) { return v.label === 'username'; })">{{ errors.find(function(v) { return v.label === "username"; }).message}}</span>
                         <div class='form-group' v-bind:class="{error: errors.find(function(v) { return v.label === 'email'; })}">
-                            <input type='text' class='form-control' v-model="form.email" placeholder=' ' required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" >
+                            <input type='text' class='form-control' v-model="form.email" placeholder=' ' required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{1,}$" >
                             <span class="form-highlight"></span>
                             <label>{{ $t("auth.signup.email") }}</label>
                         </div>
@@ -85,13 +85,12 @@ export default {
         register () {
 
             container.get('services.oauth').signUp(this.form).then(response => {
-                alert('registered');
+                container.get('router').push({ name: 'sign-up.email-sent'});
             }).catch(response => {
                 var self = this;
                 this.errors = response.body.errors.map(function(error) {
                     return {label: error.label, message: self.$t(error.code.toLowerCase())};
                 });
-                console.log(this.errors);
             });
         }
     },
