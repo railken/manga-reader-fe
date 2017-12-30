@@ -4,27 +4,27 @@
             <div >
                 <!--<img class='logo' src='../assets/logo.png'>-->
                 
-                <h4>Sign in</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
+                <h4>{{ $t("auth.title") }}</h4>
+                <p> </p>
                 <form class='form' method="POST" v-on:submit.prevent="login();">
                     <div class='form-group' v-bind:class="{error: error}">
                         <input type='text' class='form-control' v-model="form.username" placeholder=' ' required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" >
                         <span class="form-highlight"></span>
-                        <label>Email or Username</label>
+                        <label>{{ $t("auth.username") }}</label>
                     </div>
                     <div class='form-group' v-bind:class="{error: error}">
                         <input type='password' class='form-control' v-model="form.password"  placeholder=' ' required >
                         <span class="form-highlight"></span>
-                        <label>Password</label>
+                        <label>{{ $t("auth.password") }}</label>
                     </div>
                     <div class="error">{{ error }}&nbsp;</div> 
                     <br>
         
-                    <button class='btn btn-block btn-primary'>Accedi</button>
+                    <button class='btn btn-block btn-primary'>{{ $t("auth.button-signin") }}</button>
                 </form>
             </div>
             <div class='box'>
-                <div class='login-provider-title text-center'> Oppure accedi con </div>
+                <div class='login-provider-title text-center'> {{ $t("auth.signin-providers") }}</div>
                 <div class='container-login-provider fluid fluid-center'>
                     <button class="btn btn-social-icon btn-social btn-gitlab" v-on:click="login('gitlab');">
                         <span class="fa fa-gitlab"></span>
@@ -84,7 +84,7 @@ export default {
                           text: response.message
                         });*/
 
-                        self.error = response.message;
+                        self.error = self.$t(response.code.toLowerCase());
 
                     }
                 });

@@ -3,6 +3,12 @@
 		"provider": {
 			"email_not_found": "Login failed. An email address is required. Please add one and try again.",
 			"code_not_valid": "The code provided is invalid. Try again"
-		}
+		},
+		"credentials_not_valid": "Login failed. Invalid username or password",
+		"title": "Sign in",
+		"username": "Username or Email",
+		"password": "Password",
+		"button-signin": "Sign in",
+		"signin-providers": "Otherwise sign in with"
 	}
 }
