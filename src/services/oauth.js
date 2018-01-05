@@ -38,6 +38,11 @@ export class OAuth
 		container.get('services.cookies').set(container.get('env').cookies.token, token);
 	}
 
+	getToken()
+	{
+		return  container.get('services.cookies').get(container.get('env').cookies.token);
+	}
+	
 	providerSignInCode(provider_name, params)
 	{
 

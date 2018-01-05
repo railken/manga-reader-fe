@@ -24,8 +24,8 @@ table {
 body{
   margin:0;
   font-size:12px;
-  font-family: "Open Sans";
-  color: #88889e;
+  font-family: "Lato", sans-serif;
+  color: #54545b;
   background: rgb(247, 247, 247);
 }
 
@@ -226,7 +226,11 @@ body {
 }
 
 .url {
+  color: #54545b;
+}
 
+.url:hover {
+  color: #72727a;
 }
 
 .url-light {

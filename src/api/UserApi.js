@@ -90,4 +90,16 @@ export class UserApi
 		return Vue.http.post(this.url+"/confirm-email", params);
 	}
 
+	/**
+	 * Request a confirmation email 
+	 *
+	 * @param {Object} params
+	 *
+	 * @return {Promise}
+	 */
+	requestConfirmEmail(params)
+	{
+		return Vue.http.post(this.url+"/request-confirm-email", params);
+	}
+
 };

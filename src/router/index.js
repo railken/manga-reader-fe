@@ -8,11 +8,17 @@ import SignUp from '@/components/SignUp'
 import SignUpEmailSent from '@/components/SignUpEmailSent'
 import TokenConfirmEmail from '@/components/TokenConfirmEmail'
 import SignUpEmailRequest from '@/components/SignUpEmailRequest'
+import Manga from '@/components/Manga'
+import MangaRequest from '@/components/MangaRequest'
+import MangaChapter from '@/components/MangaChapter'
+
 
 Vue.use(Router);
 
 export default new Router({
 	mode: 'history',
+	hashbang: false,
+	history: true,
 	routes: [
 		{
 			path: '/',
@@ -48,6 +54,21 @@ export default new Router({
 		{
 			path: '/confirm-email/:token',
 			component: TokenConfirmEmail
+		},
+		{
+			path: '/manga/:slug',
+			name: 'manga',
+			component: Manga
+		},
+		{
+			path: '/manga/:slug/request',
+			name: 'manga.request',
+			component: MangaRequest
+		},
+		{
+			path: '/manga/:slug/:chapter',
+			name: 'manga.chapter',
+			component: MangaChapter
 		},
 	]
 })
