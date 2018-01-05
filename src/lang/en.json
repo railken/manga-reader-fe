@@ -37,7 +37,12 @@
 			}
 		},
 		"signup-confirmed": {
-			"message": "We sent an email at {email}."
+			"message": "We sent an email. Check your inbox"
+		},
+		"signup-email-request": {
+			"title": "Resend confirmation email",
+			"message": "Resend the confirmation email. (Every 15 minutes)",
+			"button": "Request"
 		}
 	}
 }

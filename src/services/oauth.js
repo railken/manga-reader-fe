@@ -96,6 +96,11 @@ export class OAuth
 		});
 	}
 
+	requestConfirmEmail(params)
+	{
+		return this.api.requestConfirmEmail(params);
+	}
+
 	logout()
 	{
 		container.get('services.cookies').remove(container.get('env').cookies.token);

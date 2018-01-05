@@ -2,21 +2,28 @@
     <div class='container full-height '>
         <div>
             <div class='paper content container-signin'>
-                <div class='text-center'>
-                    <i class='fa fa-send icon'></i>
-                    <br><br>
-                    <p>
-                        {{ $t("auth.signup-confirmed.message") }}
-                    </p>
+                <div >
+                    <!--<img class='logo' src='../assets/logo.png'>-->
+                    
+                    <h4>{{ $t("auth.signup-email-request.title") }}</h4>
+                    <p>{{ $t("auth.signup-email-request.message") }}</p>
+                    <form class='form' method="POST" v-on:submit.prevent="register();">
+                        <div class='form-group' v-bind:class="{error: errors.find(function(v) { return v.label === 'email'; })}">
+                            <input type='text' class='form-control' v-model="form.email" placeholder=' ' required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{1,}$" >
+                            <span class="form-highlight"></span>
+                            <label>{{ $t("auth.signup.email") }}</label>
+                        </div>
 
-                    <p>
-                        {{ $t('auth.signin.confirmation_email.label') }}
-                        <router-link :to="{ name: 'sign-up.email-request'}" class='url url-light'>{{ $t('auth.signin.confirmation_email.url') }}</router-link>
-                    </p>
-
+                        <span class='message-error' v-if="errors.find(function(v) { return v.label === 'email'; })">{{ errors.find(function(v) { return v.label === "email"; }).message}}</span>
+                        
+                        <div class='fluid'>
+                            <div class='fill'></div>
+                        </div>
+                        <button class='btn btn-block btn-primary'>{{ $t("auth.signup-email-request.button") }}</button>
+                    </form>
                 </div>
+
             </div>
-        </div>
     </div>
     </div>
 </template>
@@ -26,6 +33,7 @@
 import { container } from '../services/container'
 
 export default {
+    name: 'SignUp',
     data () {
         return {
             nav: false,
@@ -34,19 +42,15 @@ export default {
         }
     },
     methods: {
-        login (provider) {
-            container.get('services.oauth').providerSignIn(provider);
-        },
         register () {
 
-            container.get('services.oauth').signUp(this.form).then(response => {
-                alert('registered');
+            container.get('services.oauth').requestConfirmEmail(this.form).then(response => {
+                container.get('router').push({ name: 'sign-up.email-sent'});
             }).catch(response => {
                 var self = this;
                 this.errors = response.body.errors.map(function(error) {
                     return {label: error.label, message: self.$t(error.code.toLowerCase())};
                 });
-                console.log(this.errors);
             });
         }
     },
@@ -57,10 +61,6 @@ export default {
 </script>
 
 <style scoped>
-    .icon {
-        font-size: 72px;
-        margin: 20px 0;
-    }
     p {
         margin: 10px 0;
     }

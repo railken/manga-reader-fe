@@ -35,7 +35,7 @@
                     </form>
                 </div>
 
-                <p>{{ $t('auth.signup.confirmation_email.label') }} <router-link :to="{ name: 'sign-up'}" class='url url-light'>{{ $t('auth.signup.confirmation_email.url') }}</router-link></p>
+                <p>{{ $t('auth.signup.confirmation_email.label') }} <router-link :to="{ name: 'sign-up.email-request'}" class='url url-light'>{{ $t('auth.signup.confirmation_email.url') }}</router-link></p>
             </div>
 
             <div class='paper content container-signin'>

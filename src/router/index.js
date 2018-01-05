@@ -7,6 +7,7 @@ import SignInOauthToken from '@/components/SignInOauthToken'
 import SignUp from '@/components/SignUp'
 import SignUpEmailSent from '@/components/SignUpEmailSent'
 import TokenConfirmEmail from '@/components/TokenConfirmEmail'
+import SignUpEmailRequest from '@/components/SignUpEmailRequest'
 
 Vue.use(Router);
 
@@ -38,6 +39,11 @@ export default new Router({
 			path: '/sign-up/email-sent',
 			name: 'sign-up.email-sent',
 			component: SignUpEmailSent
+		},
+		{
+			path: '/request-confirmation-email',
+			name: 'sign-up.email-request',
+			component: SignUpEmailRequest
 		},
 		{
 			path: '/confirm-email/:token',
