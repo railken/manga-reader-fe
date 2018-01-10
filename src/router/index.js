@@ -11,6 +11,8 @@ import SignUpEmailRequest from '@/components/SignUpEmailRequest'
 import Manga from '@/components/Manga'
 import MangaRequest from '@/components/MangaRequest'
 import MangaChapter from '@/components/MangaChapter'
+import Guard from '../middlewares/Guard'
+
 
 
 Vue.use(Router);
@@ -23,7 +25,8 @@ export default new Router({
 		{
 			path: '/',
 			name: 'main',
-			component: Main
+			component: Main,
+			beforeEnter: Guard.auth
 		},
 		{
 			path: '/sign-in',
@@ -58,17 +61,21 @@ export default new Router({
 		{
 			path: '/manga/:slug',
 			name: 'manga',
-			component: Manga
+			component: Manga,
+			beforeEnter: Guard.auth
 		},
 		{
 			path: '/manga/:slug/request',
 			name: 'manga.request',
-			component: MangaRequest
+			component: MangaRequest,
+			beforeEnter: Guard.auth
 		},
 		{
 			path: '/manga/:slug/:chapter',
 			name: 'manga.chapter',
-			component: MangaChapter
+			component: MangaChapter,
+			beforeEnter: Guard.auth
+
 		},
 	]
 })

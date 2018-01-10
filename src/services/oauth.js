@@ -74,6 +74,16 @@ export class OAuth
 		return this.api.signUp(params);
 	}
 
+	authenticate(vars)
+	{
+		var access_token = container.get('services.cookies').get(container.get('env').cookies.token);
+
+        return this.api.getUser(access_token).then(response => {
+        	return response;
+        })
+	}
+
+
 	getProviderByName(provider)
 	{	
 		

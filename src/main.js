@@ -8,6 +8,7 @@ import router from './router'
 
 import { OAuth } from './services/oauth';
 import { container } from './services/container';
+import { ProviderLoader } from './bootstrap/ProviderLoader';
 import * as Cookies from "js-cookie";
 import Notifications from 'vue-notification';
 import VueLocalStorage from 'vue-localstorage';
@@ -53,16 +54,46 @@ container.get('date').locale('en', {
 
 
 
+var UserProvider = function(next) {
 
-new Vue({
-	i18n: new VueI18n({
-	    locale: 'en',
-	    messages: {
-	      en: require('./lang/en.json'),
-	    }
-	}),
-  	el: '#app',
-  	router,
-  	template: '<App/>',
-  	components: { App },
-})
+	container.get('services.oauth').authenticate().then(response => {
+       	container.set('user', response.body.data.resource);
+       	window.user = container.get('user');
+       	next();
+
+    }).catch(error => {
+       	next();
+    });
+
+}
+
+var VueProvider = function(next) {
+	new Vue({
+		i18n: new VueI18n({
+		    locale: 'en',
+		    messages: {
+		      en: require('./lang/en.json'),
+		    }
+		}),
+	  	el: '#app',
+	  	router,
+	  	template: '<App/>',
+	  	components: { App },
+	  	data: {
+	  		container: container,
+	  		user: container.get('user')
+	  	}
+	});
+
+	next();
+}
+
+
+
+var pl = new ProviderLoader();
+pl.addProviders([
+	UserProvider,
+	VueProvider,
+]);
+pl.execute(0);
+

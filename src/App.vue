@@ -25,12 +25,7 @@ export default {
         };
     },
     mounted() {
-
-        container.get('services.oauth').getUser().then(response => {
-            this.user = response.body.data.resource;
-        }).catch(error => {
-
-        });
+        this.user = this.$root.$data.user;
     }
 }
 </script>
