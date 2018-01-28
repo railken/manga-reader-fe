@@ -12,6 +12,19 @@ export class MangaApi
 		this.access_token = container.get('services.oauth').getToken();
 	}
 
+
+	/**
+	 * Get manga
+	 *
+	 * @param {mixed} key
+	 *
+	 * @return {Promise}
+	 */
+	index(params)
+	{
+		return Vue.http.get(this.url+"/manga", { params: params, headers: { Authorization: "Bearer "+this.access_token }});
+	}
+
 	/**
 	 * Get manga
 	 *
@@ -33,7 +46,19 @@ export class MangaApi
 	 */
 	getChapters(key)
 	{
-		return Vue.http.get(this.url+"/manga/"+key+"/chapters", { params: { show: 9999 }, headers: { Authorization: "Bearer "+this.access_token }});
+		return Vue.http.get(this.url+"/manga/"+key+"/chapters", { params: { show: 9999, sort_direction: 'desc', sort_field: 'number' }, headers: { Authorization: "Bearer "+this.access_token }});
+	}
+
+	/**
+	 * Get latest chaters
+	 *
+	 * @param {object} params
+	 *
+	 * @return {Promise}
+	 */
+	getLatestChapters(params)
+	{
+		return Vue.http.get(this.url+"/chapters", { params: { show: params.show, page: params.page, sort_direction: 'desc', sort_field: 'released_at' }, headers: { Authorization: "Bearer "+this.access_token }});
 	}
 
 

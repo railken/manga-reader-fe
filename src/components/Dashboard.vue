@@ -3,11 +3,7 @@
 
     <div class='container'>
         <div class='paper page request'>
-            <h3>Request sent</h3>
-            <p>
-                The request has been sent.
-            </p>
-            <router-link class='btn btn-primary' :to="{name: 'manga', params: {slug: slug}}">Go back to the manga</router-link>
+            <h3>Welcome to Manga Reader</h3>
         </div>
     </div>
   </div>
@@ -16,6 +12,7 @@
 <script>
 
 import { container } from '../services/container'
+import { MangaApi } from '../api/MangaApi';
 
 export default {
     data () {
@@ -28,13 +25,13 @@ export default {
     methods: {
         load () {
 
-            this.slug = this.$route.params.slug;
         },
 
         request () {
         }
     },
     mounted () {
+        this.service = new MangaApi();
         this.load();
     }
 }

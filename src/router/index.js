@@ -11,6 +11,10 @@ import SignUpEmailRequest from '@/components/SignUpEmailRequest'
 import Manga from '@/components/Manga'
 import MangaRequest from '@/components/MangaRequest'
 import MangaChapter from '@/components/MangaChapter'
+import Dashboard from '@/components/Dashboard'
+import Searcher from '@/components/Searcher'
+import Library from '@/components/Library'
+import LatestReleases from '@/components/LatestReleases'
 import Guard from '../middlewares/Guard'
 
 
@@ -26,8 +30,46 @@ export default new Router({
 			path: '/',
 			name: 'main',
 			component: Main,
-			beforeEnter: Guard.auth
-		},
+			beforeEnter: Guard.auth,
+			children: [
+				{
+					path: '/',
+					name: 'dashboard',
+					component: Dashboard,
+				},
+				{
+					path: '/search',
+					name: 'searcher',
+					component: Searcher,
+				},
+				{
+					path: '/library',
+					name: 'library',
+					component: Library,
+				},
+				{
+					path: '/latest-releases',
+					name: 'latest-releases',
+					component: LatestReleases,
+				},
+				{
+					path: '/manga/:slug',
+					name: 'manga',
+					component: Manga,
+				},
+				{
+					path: '/manga/:slug/request',
+					name: 'manga.request',
+					component: MangaRequest,
+				},
+				{
+					path: '/manga/:slug/:chapter',
+					name: 'manga.chapter',
+					component: MangaChapter,
+
+				},
+			]
+		},		
 		{
 			path: '/sign-in',
 			name: 'sign-in',
@@ -57,25 +99,6 @@ export default new Router({
 		{
 			path: '/confirm-email/:token',
 			component: TokenConfirmEmail
-		},
-		{
-			path: '/manga/:slug',
-			name: 'manga',
-			component: Manga,
-			beforeEnter: Guard.auth
-		},
-		{
-			path: '/manga/:slug/request',
-			name: 'manga.request',
-			component: MangaRequest,
-			beforeEnter: Guard.auth
-		},
-		{
-			path: '/manga/:slug/:chapter',
-			name: 'manga.chapter',
-			component: MangaChapter,
-			beforeEnter: Guard.auth
-
 		},
 	]
 })

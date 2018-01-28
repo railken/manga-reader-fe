@@ -1,26 +1,42 @@
 <template>
   <div>
-    <div class='paper'>
-        <div v-if='user'>
-            {{ user.username }}
-            <button class='btn btn-primary' v-on:click="logout()">Logout</button>
-        </div>
-        <div v-if="!user">
-
-            <router-link class='btn btn-primary' :to="{ name: 'sign-in' }">Login</router-link>
-        </div>
-    </div>
-
-
 
     <div class='container' v-if='manga'>
         <div class='paper page'>
             
             <div class='fluid'>
-                <img :src='manga.cover' class='img cover'>
+                <div><div class='cover-container'><img :src='manga.cover' class='img cover'></div></div>
                 <div class='info'>
-                    <h1>{{ manga.title }}</h1>
+                    <h1>
+                        {{ manga.title }}
 
+                        <span v-if='!manga.follow'>
+                            <span class='fa fa-cloud-download manga-icons manga-followed-icon' title='All new scans will be automatically downloaded'></span>
+                        </span>
+
+                        <span v-if='manga.follow'>
+                            <span class='fa fa-cloud-download manga-icons active manga-followed-icon' title='All new scans will be automatically downloaded'></span>
+                        </span>
+
+
+
+                        <span v-if='library === false'>
+                            <span class='fa fa-book manga-icons manga-icons-hover manga-library-icon' title='Currently added to your library' v-on:click="addMangaToLibrary();"></span>
+                        </span>
+                        <span v-if="library === true">
+                            <span class='fa fa-book manga-icons manga-icons-hover active manga-library-icon' title='Currently added to your library'  v-on:click="removeMangaFromLibrary();"></span>
+                        </span>
+
+                    </h1>
+
+                    <div v-if='library === false'>
+                        <i>Manga not in library</i>. <span class='url' v-on:click="addMangaToLibrary();">Click here to add to your library</span>
+                    </div>
+                    <div v-if="library === true">
+                        <i>Currently in your library</i>. <span class='url' v-on:click="removeMangaFromLibrary();">Click here to remove from the library</span>
+                    </div>
+                    
+                    <br>
                     <div class='info-basic'>
                         <label>Aliases</label>
                         {{ manga.aliases.join(", ") }}
@@ -48,14 +64,24 @@
         <div class='paper page request' v-if='!manga.follow'>
             <h3>Manga Reader</h3>
             <p>
-                The following manga isn't listed as a manga readable. If you're interested on reading this you can simple click the button and wait untill the end of download.
+                The following manga isn't listed as a readable manga. If you're interested on reading this you can simple click the button and wait untill the end of download.
             </p>
-            <button class='btn btn-primary' v-on='request()'>Let me read this!</button>
+            <button class='btn btn-primary' v-on:click='request()'>Let me read this!</button>
         </div>
         <div class='paper page' v-if='manga.follow'>
-            <h2>Chapters</h2>
-            <div v-for='chapter in manga.chapters'>
-                <router-link :to="{ name: 'manga.chapter', 'params': {slug: slug, chapter: chapter.number} }">{{ manga.title }} {{ chapter.title ? chapter.title : chapter.number }}</router-link>
+            <div v-if='manga.chapters.length === 0'>
+                <p>There's no chapter available yet</p>
+            </div>
+
+            <div v-if='manga.volumes' v-for='volume in manga.volumes.toArray()'>
+                <h5>Volume {{ volume.volume }}</h5>
+                <div v-for="chapter in volume.chapters">
+                    <router-link :to="{ name: 'manga.chapter', 'params': {slug: slug, chapter: chapter.number} }" class='url'>
+                        <span class='chapter-head-title'>{{ manga.title }} {{ chapter.number }}</span>
+                    </router-link>
+
+                    &nbsp;<span class='chapter-title'> {{ chapter.title }}</span>
+               </div>
             </div>
         </div>
     </div>
@@ -66,24 +92,80 @@
 
 import { container } from '../services/container'
 import { MangaApi } from '../api/MangaApi';
+import { LibraryApi } from '../api/LibraryApi';
+
+import Collection from 'collect.js';
 
 export default {
     data () {
         return {
             manga: null,
             slug: null,
+            library: null
         };
     },
     props: ['user'],
     methods: {
+        addMangaToLibrary () {
+            this.api.library.add(this.manga.id);
+            this.library = true;
+        },
+
+        removeMangaFromLibrary () {
+            this.api.library.remove(this.manga.id);
+            this.library = false;
+        },
+
         load () {
 
 
-            this.service.get(this.slug).then(response => {
+            this.api.manga.get(this.slug).then(response => {
                 var manga = response.body.resource;
-                this.service.getChapters(this.slug).then(response => {
+                manga.volumes = [];
+
+
+                this.api.library.get(manga.id).then(response => {
+                    this.library = true;
+                }).catch(response => {
+                    this.library = false;
+                });
+
+                this.api.manga.getChapters(this.slug).then(response => {
                     
                     manga.chapters = response.body.resources;
+                    manga.volumes = [];
+
+                    var volumes = [];
+                    var gTv = function(volume) {
+
+                        if (volumes.indexOf(volume) === -1) {
+                            volumes.push(volume);
+                        }
+                        return volumes.indexOf(volume);
+                    }
+
+                    manga.volumes = [];
+
+
+
+                    for (var i in response.body.resources) {
+                        var chapter = response.body.resources[i];
+                        
+                        if (typeof manga.volumes[gTv(chapter.volume)] === "undefined") {
+                            manga.volumes[gTv(chapter.volume)] = {volume: chapter.volume, chapters: [], first_chapter: parseInt(chapter.number)};
+                        }
+
+                        manga.volumes[gTv(chapter.volume)].chapters.push(chapter);
+
+                    }
+
+
+                    manga.volumes = new Collection(manga.volumes).sortByDesc(function(value, key) { return value.first_chapter });
+
+                    manga.volumes.each(function(volume) {
+                        volume.chapters = new Collection(volume.chapters).sortByDesc(function(value, key) { return parseFloat(value.number); }).toArray();
+                    });
+
                     this.manga = manga;
                 });
             }).catch(response => {
@@ -92,15 +174,18 @@ export default {
         },
 
         request () {
-            this.service.requestChapters(this.slug).then(response => {
-                this.$router.push({ name: 'manga-request', params: {slug: this.slug}});
+            this.api.manga.requestChapters(this.slug).then(response => {
+                this.$router.push({ name: 'manga.request', params: {slug: this.slug}});
             }).catch(response => {
                 // Uhm...
             });
         }
     },
     mounted () {
-        this.service = new MangaApi();
+        this.api = [];
+        this.api.library = new LibraryApi();
+        this.api.manga = new MangaApi();
+
         this.slug = this.$route.params.slug;
         this.load();
     }
@@ -109,10 +194,21 @@ export default {
 
 <style scoped>
     
-    h1, h2, h3 {
+    h1, h2, h3, h5 {
         text-transform: uppercase;
 
     }
+
+    h1 {
+        font-size: 2.1rem;
+    }
+
+    h5 {
+        margin: 15px 0 5px 0;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
     .container {
         margin-top: 80px;
     }
@@ -123,8 +219,14 @@ export default {
     }
 
     .cover {
-        margin-right: 10px;
+        width: 100%;
+    }
 
+    .cover-container {
+        border: 1px solid #efefef;
+        padding: 2px;
+        width: 200px;
+        margin-right: 10px;
     }
 
     .info label {
@@ -141,4 +243,10 @@ export default {
         text-align: center;
     }
 
+    .chapter-head-title {
+        font-size: 14px;
+    }
+    .chapter-title {
+        opacity: 0.9;
+    }
 </style>

@@ -3,7 +3,6 @@
         <div>
             <div class='paper content container-signin'>
                 <div >
-                    <!--<img class='logo' src='../assets/logo.png'>-->
                     
                     <h4>{{ $t("auth.signin.title") }}</h4>
                     <p> </p>

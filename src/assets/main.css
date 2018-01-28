@@ -69,7 +69,10 @@ ul,li{
 .fluid-center {
   align-items:center;
   justify-content:center;
+}
 
+.fluid-vcenter {
+  align-items:center;
 }
 
 .flex-fill{
@@ -88,8 +91,16 @@ ul,li{
   display: flex;
 }
 
+.fluid-wrap {
+  flex-wrap: wrap;
+}
+
 .full-height {
     min-height: 100vh;
+}
+
+.w100 {
+  width: 100%;
 }
 
 .container-h{
@@ -225,12 +236,19 @@ body {
   box-shadow: 0 0 0 0.2rem rgba(136, 127, 179, 0.50) !important;
 }
 
+a, a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
 .url {
   color: #54545b;
+  cursor: pointer;
 }
 
 .url:hover {
   color: #72727a;
+  text-decoration: underline;
 }
 
 .url-light {
@@ -240,3 +258,61 @@ body {
 .url-light:hover {
     color: #d5d5e6;
 }
+
+@media(min-width:0px){
+  .ly-xs-100{ width:100%; }
+}
+
+@media (min-width:576px){
+
+  .ly-sm-50{ width:50%; }
+ 
+}
+
+@media (min-width:768px){
+
+  .ly-md-25{ width:25%; }
+ 
+
+
+}
+@media (min-width:992px){
+  [class~='ly-lg-16.66']{ width:16.66%; }
+
+}
+@media (min-width:1200px){
+  [class~='ly-xl-12.50']{ width:12.5%; }
+  [class~='ly-xl-16.66']{ width:16.66%; }
+}
+
+
+@media (min-width:1600px){
+  [class~='ly-en-12.50']{ width:12.5%; }
+}
+
+
+
+.manga-icons.active {
+  opacity: 1.0;
+}
+
+
+.manga-icons {
+  opacity: 0.3;
+}
+
+.manga-icons-hover:hover {
+  opacity: 1.0;
+  cursor: pointer;
+}
+
+.manga-followed-icon {
+    color: #1f9e74;
+    margin: 0 5px;
+}
+
+.manga-library-icon{
+  color: #0D47A1;
+}
+
+

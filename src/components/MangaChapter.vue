@@ -33,6 +33,11 @@
             </div>
         </div>
         <div class='page paper'>
+            <div v-if='chapter.resources.length === 0'>
+                It seems that there isn't any scans here.<br>
+                If you have just added this manga as readable remember that you have to wait the end of download. <br>
+                Also remember that the download of scans will start from the last chapter.
+            </div>
             <img v-for='resource in chapter.resources' :src='resource'>
         </div>
         <div class='page paper'>
