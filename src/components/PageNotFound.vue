@@ -1,7 +1,7 @@
 <template>
     <div class='container full-height '>
         <div>
-            <div class='paper content container-signin'>
+            <div class='paper content'>
                 <router-link :to="{ name: 'dashboard'}">
                         
                     <img src='../assets/404.png'>
