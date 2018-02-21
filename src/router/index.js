@@ -15,6 +15,7 @@ import Dashboard from '@/components/Dashboard'
 import Searcher from '@/components/Searcher'
 import Library from '@/components/Library'
 import LatestReleases from '@/components/LatestReleases'
+import PageNotFound from '@/components/PageNotFound'
 import Guard from '../middlewares/Guard'
 
 
@@ -100,5 +101,9 @@ export default new Router({
 			path: '/confirm-email/:token',
 			component: TokenConfirmEmail
 		},
+        {
+        	path: "*", 
+        	component: PageNotFound
+        }
 	]
 })

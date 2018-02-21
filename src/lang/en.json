@@ -44,5 +44,10 @@
 			"message": "Resend the confirmation email. (Every 15 minutes)",
 			"button": "Request"
 		}
+	},
+	"page": {
+		"404": {
+			"description": "Why are you here? Go away"
+		}
 	}
 }
