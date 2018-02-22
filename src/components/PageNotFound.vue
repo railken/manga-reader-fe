@@ -1,15 +1,29 @@
 <template>
     <div class='container full-height '>
         <div>
+
             <div class='paper content'>
                 <router-link :to="{ name: 'dashboard'}">
                         
-                    <img src='../assets/404.png'>
-                    <br>
-                    <br>
-                    <h4>{{ $t("page.404.description") }}</h4>
+                    <h2 class='logo'>Manga Coldray</h2>
                 </router-link>
             </div>
+
+
+            <div class='paper content'>
+                <router-link :to="{ name: 'dashboard'}">
+                        
+                    <img src='../assets/404_saitama.png'>
+                </router-link>
+            </div>
+
+            <div class='paper content'>
+                <router-link :to="{ name: 'dashboard'}">
+                        
+                    <p>{{ $t("page.404.description") }}</p>
+                </router-link>
+            </div>
+
         </div>
                    
     </div>
@@ -52,6 +66,8 @@ export default {
 </script>
 
 <style scoped>
+
+
     p {
         margin: 10px 0;
     }

@@ -1,10 +1,20 @@
 <template>
   <div>
+    <div v-if="!user">
 
+    </div>
     <div class='container'>
         <div class='paper page request'>
-            <h3>Welcome to Manga Reader</h3>
+            <form v-on:submit.prevent="search" class='fluid'>
+               
+                <input class='form-control' placeholder='Type your search here' v-model='query'>
+                
+                <button class='btn btn-primary' type='submit'>Search</button>
+                
+
+            </form>
         </div>
+
     </div>
   </div>
 </template>
@@ -19,6 +29,7 @@ export default {
         return {
             manga: null,
             slug: null,
+            query: '',
         };
     },
     props: ['user'],
@@ -27,6 +38,17 @@ export default {
 
         },
 
+        search () {
+
+            if (!this.query) {
+                this.result = null;
+                return;
+            }
+
+            this.$router.push({ name: "searcher", query: {q: this.query} });
+
+
+        },
         request () {
         }
     },
@@ -69,6 +91,11 @@ export default {
 
     .request {
         text-align: center;
+    }
+    
+    input {
+        text-align: center;
+        height: 38px
     }
 
 </style>

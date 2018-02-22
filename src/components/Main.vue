@@ -1,29 +1,32 @@
 <template>
   <div>
-  	<div class='paper  header' v-if='user'>
+  	<div class='paper  header'>
   		<div class='fluid fluid-vcenter header-content'>
-	  		<div>
-	  			<router-link  :to="{ name: 'dashboard' }" class='url header-url'><i class='fa fa-home'></i>&nbsp; Dashboard</router-link>
-	  		</div>
-	  		<div>
-	  			<router-link  :to="{ name: 'library' }" class='url header-url'><i class='fa fa-book'></i>&nbsp; Library</router-link>
-	  		</div>
-	  		<div>
-	  			<router-link  :to="{ name: 'latest-releases' }" class='url header-url'><i class='fa fa-list'></i>&nbsp; Latest releases</router-link>
-	  		</div>
-	  		<div>
-                <router-link :to="{ name: 'searcher' }" class='url header-url'><i class='fa fa-search'></i>&nbsp; Search </router-link>
-            </div>
+  			<div class='header-logo'>
+  				<logo :type="'sm'"></logo>
+  			</div>
 	  		<div class='fill'></div>
+	  		<!--<div>
+                <router-link :to="{ name: 'searcher' }" class='url header-url'>Search </router-link>
+            </div>
 	  		<div>
+	  			<router-link  :to="{ name: 'latest-releases' }" class='url header-url'> Latest releases</router-link>
+	  		</div>-->
+	  		<div v-if='user'>
                 <span class='jobs' title='Current jobs'><i class='fa fa-database'></i><span>{{ user.jobs }}</span></span>
             </div>
-	  		<div v-if='user'>
+	  		<div v-if='user' >
 				<div class='dropdown'>
 
 					<div class='dropdown-main' v-on:click='dropdown = true'>
 						<img width='32' height='32' class='logo' :src='user.avatar'>
 					</div>
+					<div class='dropdown-content paper' v-on-clickaway="fade" v-if='dropdown == true'>
+		    			<router-link  :to="{ name: 'dashboard' }" class='url header-url'>Dashboard</router-link>
+		    		</div>
+					<div class='dropdown-content paper' v-on-clickaway="fade" v-if='dropdown == true'>
+		    			<router-link  :to="{ name: 'dashboard' }" class='url header-url'>Library</router-link>
+		    		</div>
 					<div class='dropdown-content paper' v-on-clickaway="fade" v-if='dropdown == true'>
 		    			<span class='url' v-on:click="logout()">Logout</span>
 		    		</div>
@@ -38,7 +41,7 @@
 
     <router-view/>
 
-    <div class='character character-right'><img src='../assets/characters/rokka_no_yuusha.png'></div>
+    <!--<div class='character character-right'><img src='../assets/characters/rokka_no_yuusha.png'></div>-->
   </div>
 </template>
 
@@ -73,6 +76,7 @@
 		height: 48px;
 		margin: 0 auto;
 		max-width: 1100px;
+		position:relative;
 	}
 
 	.dropdown {

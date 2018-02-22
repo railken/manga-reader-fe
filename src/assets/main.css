@@ -23,7 +23,7 @@ table {
 
 body{
   margin:0;
-  font-size:12px;
+  font-size:14px;
   font-family: "Lato", sans-serif;
   color: #54545b;
   background: rgb(247, 247, 247);
@@ -201,12 +201,6 @@ ul,li{
   background: #E53935;
 }
 
-.logo {
-    max-width: 100px;
-    margin: -2px;
-}
-    
-
 body {
     background-color: #52525d;
 }
@@ -228,7 +222,7 @@ body {
 }
 
 .btn-primary:hover {
-  background-color: #505061;
+  background-color: #666679;
 }
 
 .btn-primary:active, .btn-primary:focus {

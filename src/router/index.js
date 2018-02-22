@@ -31,7 +31,6 @@ export default new Router({
 			path: '/',
 			name: 'main',
 			component: Main,
-			beforeEnter: Guard.auth,
 			children: [
 				{
 					path: '/',
@@ -47,6 +46,7 @@ export default new Router({
 					path: '/library',
 					name: 'library',
 					component: Library,
+					beforeEnter: Guard.auth,
 				},
 				{
 					path: '/latest-releases',

@@ -14,6 +14,7 @@ import Notifications from 'vue-notification';
 import VueLocalStorage from 'vue-localstorage';
 import BootstrapVue from 'bootstrap-vue';
 import VueI18n from 'vue-i18n';
+import Logo from './components/Logo.vue'
 
 
 Vue.use(BootstrapVue);
@@ -87,7 +88,7 @@ var VueProvider = function(next) {
 
 	next();
 }
-
+Vue.component('logo', Logo);
 
 
 var pl = new ProviderLoader();
