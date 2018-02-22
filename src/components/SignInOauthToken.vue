@@ -38,8 +38,6 @@
         mounted () 
         {
 
-            return;
-
         	var params = container.get('request').query;
         	var provider = this.$route.params.provider;
             self.loading = true;
