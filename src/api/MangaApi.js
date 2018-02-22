@@ -61,6 +61,17 @@ export class MangaApi
 		return Vue.http.get(this.url+"/chapters", { params: { show: params.show, page: params.page, sort_direction: 'desc', sort_field: 'released_at' }, headers: { Authorization: "Bearer "+this.access_token }});
 	}
 
+	/**
+	 * Get latest chaters
+	 *
+	 * @param {object} params
+	 *
+	 * @return {Promise}
+	 */
+	getLatestReleases(params)
+	{
+		return Vue.http.get(this.url+"/manga", { params: { show: params.show, page: params.page, sort_direction: 'desc', sort_field: 'last_chapter_released_at' }, headers: { Authorization: "Bearer "+this.access_token }});
+	}
 
 	/**
 	 * Get chater
