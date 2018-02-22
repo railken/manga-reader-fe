@@ -20,19 +20,19 @@
 
 
 
-                        <span v-if='library === false'>
+                        <span v-if='user && library === false'>
                             <span class='fa fa-book manga-icons manga-icons-hover manga-library-icon' title='Currently added to your library' v-on:click="addMangaToLibrary();"></span>
                         </span>
-                        <span v-if="library === true">
+                        <span v-if="user && library === true">
                             <span class='fa fa-book manga-icons manga-icons-hover active manga-library-icon' title='Currently added to your library'  v-on:click="removeMangaFromLibrary();"></span>
                         </span>
 
                     </h1>
 
-                    <div v-if='library === false'>
+                    <div v-if='user && library === false'>
                         <i>Manga not in library</i>. <span class='url' v-on:click="addMangaToLibrary();">Click here to add to your library</span>
                     </div>
-                    <div v-if="library === true">
+                    <div v-if="user && library === true">
                         <i>Currently in your library</i>. <span class='url' v-on:click="removeMangaFromLibrary();">Click here to remove from the library</span>
                     </div>
                     
@@ -124,11 +124,13 @@ export default {
                 manga.volumes = [];
 
 
-                this.api.library.get(manga.id).then(response => {
-                    this.library = true;
-                }).catch(response => {
-                    this.library = false;
-                });
+                if (this.user) {
+                    this.api.library.get(manga.id).then(response => {
+                        this.library = true;
+                    }).catch(response => {
+                        this.library = false;
+                    });
+                }
 
                 this.api.manga.getChapters(this.slug).then(response => {
                     
