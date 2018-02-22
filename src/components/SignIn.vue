@@ -23,7 +23,7 @@
                         <div class="error">{{ error }}&nbsp;</div> 
                         <div class='fluid'>
                             <div class='fill'></div>
-                            <p><router-link :to="{ name: 'forgot-password'}" class='url url-light'>{{ $t("auth.signin.forgot_password.url") }}</router-link></p>
+                            <p><router-link :to="{ name: 'forgot-password'}" class='url url-light'>{{ $t("auth.signin.forgot_password.url") }}(wip)</router-link></p>
                         </div>
                         <button class='btn btn-block btn-primary'>{{ $t("auth.signin.button") }}</button>
                     </form>

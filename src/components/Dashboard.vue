@@ -94,7 +94,6 @@ export default {
     }
     
     input {
-        text-align: center;
         height: 38px
     }
 

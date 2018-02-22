@@ -2,6 +2,9 @@
     <div class='container full-height '>
         <div>
             <div class='paper content container-signin'>
+                <logo :type="'bg'"></logo>
+            </div>
+            <div class='paper content container-signin'>
                 <div class='text-center'>
                     <i class='fa fa-send icon'></i>
                     <br><br>

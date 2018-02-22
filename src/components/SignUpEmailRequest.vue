@@ -4,8 +4,10 @@
     <div class='container full-height '>
         <div>
             <div class='paper content container-signin'>
+                <logo :type="'bg'"></logo>
+            </div>
+            <div class='paper content container-signin'>
                 <div >
-                    <img class='logo' src='../assets/logo.png'>
                     
                     <h4>{{ $t("auth.signup-email-request.title") }}</h4>
                     <p>{{ $t("auth.signup-email-request.message") }}</p>

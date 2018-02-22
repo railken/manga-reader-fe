@@ -58,6 +58,7 @@ export default {
 
             this.$router.replace({ name: "library", query: {q: this.query} })
 
+            this.result = null;
             var q = this.query ? 'title ct "'+this.query+'"'
                 // +" or ("+this.query.split(" ").map(function(v) { return "title ct "+v; }).join(" or ")+")"
                 : '';

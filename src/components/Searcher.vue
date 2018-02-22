@@ -70,6 +70,7 @@ export default {
                 return;
             }
 
+            this.result = null;
             this.$router.replace({ name: "searcher", query: {q: this.query} })
 
             var q = 'title ct "'+this.query+'"'
@@ -116,7 +117,6 @@ export default {
     }
 
     input {
-        text-align: center;
         height: 38px
     }
 

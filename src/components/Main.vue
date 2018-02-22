@@ -23,12 +23,8 @@
 					</div>
 					<div class='dropdown-content paper' v-on-clickaway="fade" v-if='dropdown == true'>
 		    			<router-link  :to="{ name: 'dashboard' }" class='url header-url'>Dashboard</router-link>
-		    		</div>
-					<div class='dropdown-content paper' v-on-clickaway="fade" v-if='dropdown == true'>
-		    			<router-link  :to="{ name: 'dashboard' }" class='url header-url'>Library</router-link>
-		    		</div>
-					<div class='dropdown-content paper' v-on-clickaway="fade" v-if='dropdown == true'>
-		    			<span class='url' v-on:click="logout()">Logout</span>
+		    			<router-link  :to="{ name: 'library' }" class='url header-url'>Library</router-link>
+		    			<span class='url header-url' v-on:click="logout()">Logout</span>
 		    		</div>
 		    	</div>
 			</div>
@@ -77,6 +73,12 @@
 		margin: 0 auto;
 		max-width: 1100px;
 		position:relative;
+	}
+
+	@media (max-width: 1124px) {
+		.header-content {
+			padding: 0 20px;
+		}
 	}
 
 	.dropdown {
