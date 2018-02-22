@@ -75,7 +75,7 @@ export default {
             var scrollTop = (document.body && document.body.scrollTop)
             ? document.body.scrollTop : document.documentElement.scrollTop;
 
-            if (totalHeight - 200 <= scrollTop + clientHeight) {
+            if (totalHeight - 1000 <= scrollTop + clientHeight) {
 
                 if (!this.loading && this.result && this.result.pagination.pages > this.page) {
                     this.page++;
@@ -192,4 +192,14 @@ export default {
         display: block;
     }
 
+    @media (max-width: 468px) {
+        .manga-container > div{
+            flex-wrap: wrap;
+        }
+
+        .cover-container {
+            max-width: 100%;
+            margin-bottom: 10px;
+        }
+    }
 </style>
