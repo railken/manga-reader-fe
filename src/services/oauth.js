@@ -49,8 +49,6 @@ export class OAuth
 		var provider = this.getProviderByName(provider_name);
 		var params = provider.getParamsAccessToken(params);
 
-		var r = container.get('services.client');
-
 		return !params.access_token 
 			? this.api.oauthProviderRequestToken(provider_name, params).then(response => {
 				this.setCookieToken(response.body.access_token);
