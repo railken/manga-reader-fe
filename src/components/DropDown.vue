@@ -50,7 +50,7 @@
     require('spinkit/css/spinners/1-rotating-plane.css');
 </script>
 
-<style>
+<style scoped>
 
     .container-loader {
         margin: 100px auto;
@@ -61,12 +61,6 @@
 
     body, main {
         background-color: #52525d;
-    }
-
-    .container-signin {
-        width: 298px;
-        margin: 50px auto;
-        display: block;
     }
     .content {
         padding: 10px;

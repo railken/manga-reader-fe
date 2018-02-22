@@ -1,18 +1,23 @@
 <template>
-	<div class='container full-height'>
-        <div class='paper content container-signin'>
-    		<div v-if='loading'>
-                <div class='container-loader'>
-                    <div class='sk-rotating-plane'></div>
-                </div>
+    <div class='container full-height '>
+        <div>
+            <div class='paper content container-signin'>
+                <logo :type="'bg'"></logo>
             </div>
-            <div v-if='!loading' class=''>
-                <div class='content'>
-                    <div class='error text-error'>
-                        {{ error }}
+            <div class='paper content container-signin'>
+        		<div v-if='loading'>
+                    <div class='container-loader'>
+                        <div class='sk-rotating-plane'></div>
                     </div>
-                    <br><br>
-                    <router-link class='btn btn-primary' :to="{ name: 'sign-in'}">Back to sign in</router-link>
+                </div>
+                <div v-if='!loading' class=''>
+                    <div class='content'>
+                        <div class='error text-error'>
+                            {{ error }}
+                        </div>
+                        <br><br>
+                        <router-link class='btn btn-primary' :to="{ name: 'sign-in'}">Back to sign in</router-link>
+                    </div>
                 </div>
             </div>
         </div>
@@ -33,6 +38,8 @@
         mounted () 
         {
 
+            return;
+
         	var params = container.get('request').query;
         	var provider = this.$route.params.provider;
             self.loading = true;
@@ -51,7 +58,7 @@
     require('spinkit/css/spinners/1-rotating-plane.css');
 </script>
 
-<style>
+<style scoped>
 
     .container-loader {
         margin: 100px auto;
@@ -60,18 +67,23 @@
         background-color: white;
     }
 
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
     body, main {
         background-color: #52525d;
     }
-
     .container-signin {
-        width: 298px;
-        margin: 50px auto;
-        display: block;
+        min-width: 298px;
     }
     .content {
-        padding: 10px;
+        padding: 20px;
         background: #3d3d47;
+        margin: 10px;
         border: 1px solid #3d3d47;
         color: white;
     }

@@ -53,7 +53,7 @@
     require('spinkit/css/spinners/1-rotating-plane.css');
 </script>
 
-<style>
+<style scoped>
 
     .container-loader > div {
         background-color: white;
