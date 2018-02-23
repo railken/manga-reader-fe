@@ -14,35 +14,37 @@
 
 
     <div class='container' v-if='manga && chapter'>
-        <div class='page paper'>
-            <div class='fluid fluid-center nav'>
-                <router-link :to="{ name: 'manga', params: { slug: slug }}" class='title url'>{{ manga.title }}</router-link>
-                &nbsp;
-                <i class="fa fa-angle-double-right"></i>
-                &nbsp;
-                <select class='form-control select-chapter fill' v-model='number' v-on:change='moveTo(number)'>
-                
-                    <option :value='chapter.number' v-for='chapter in manga.chapters' >
-                        <span v-if="chapter.volume !== '-1'">Vol {{ chapter.volume }}</span>
-                        Ch {{ chapter.number }}
-                        <span v-if="chapter.title !== ''">
-                            : {{ chapter.title }}
-                        </span>
-                    </option>
-                </select>
+        <div>
+            <div class='page paper'>
+                <div class='fluid fluid-center nav'>
+                    <router-link :to="{ name: 'manga', params: { slug: slug }}" class='title url'>{{ manga.title }}</router-link>
+                    &nbsp;
+                    <i class="fa fa-angle-double-right"></i>
+                    &nbsp;
+                    <select class='form-control select-chapter fill' v-model='number' v-on:change='moveTo(number)'>
+                    
+                        <option :value='chapter.number' v-for='chapter in manga.chapters' >
+                            <span v-if="chapter.volume !== '-1'">Vol {{ chapter.volume }}</span>
+                            Ch {{ chapter.number }}
+                            <span v-if="chapter.title !== ''">
+                                : {{ chapter.title }}
+                            </span>
+                        </option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class='page paper'>
-            <div v-if='chapter.resources.length === 0'>
-                It seems that there isn't any scans here.<br>
-                If you have just added this manga as readable remember that you have to wait the end of download. <br>
-                Also remember that the download of scans will start from the last chapter.
+            <div class='page paper'>
+                <div v-if='chapter.resources.length === 0'>
+                    It seems that there isn't any scans here.<br>
+                    If you have just added this manga as readable remember that you have to wait the end of download. <br>
+                    Also remember that the download of scans will start from the last chapter.
+                </div>
+                <img v-for='resource in chapter.resources' :src='resource'>
             </div>
-            <img v-for='resource in chapter.resources' :src='resource'>
-        </div>
-        <div class='page paper'>
-            <button class='btn btn-primary' v-on:click='moveTo(chapter.prev ? chapter.prev.number : null)'>Previous Chapter</button>
-            <button class='btn btn-primary' v-on:click='moveTo(chapter.next ? chapter.next.number : null)'>Next Chapter</button>
+            <div class='page paper'>
+                <button class='btn btn-primary' v-on:click='moveTo(chapter.prev ? chapter.prev.number : null)'>Previous Chapter</button>
+                <button class='btn btn-primary' v-on:click='moveTo(chapter.next ? chapter.next.number : null)'>Next Chapter</button>
+            </div>
         </div>  
     </div>
   </div>
