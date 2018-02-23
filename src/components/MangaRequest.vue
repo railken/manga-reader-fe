@@ -42,18 +42,6 @@ export default {
 
 <style scoped>
     
-    h1, h2, h3 {
-        text-transform: uppercase;
-
-    }
-    .container {
-        margin-top: 80px;
-    }
-
-    .page {
-        padding: 20px;
-        margin: 10px 0;
-    }
 
     .cover {
         margin-right: 10px;

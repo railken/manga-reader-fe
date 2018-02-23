@@ -101,13 +101,14 @@ export default {
         padding: 5px;
         margin: 0 5px;
         height: 370px;
-        width: 190px;
+        width: 210px;
     }
     .release-manga-container img{
-        width: 180px;
+        width: 200px;
         height: 280px;
         margin-bottom: 10px;
     }
+
 
     .info {
         text-transform: uppercase;
@@ -138,5 +139,18 @@ export default {
     .btn-right {
         right: -40px
     }
+    @media (max-width: 468px) {
+    
+        .btn-left {
+            left: -20px;
+
+        }
+
+        .btn-right {
+            right: -20px
+
+        }
+    }
+
 
 </style>

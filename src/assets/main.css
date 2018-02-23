@@ -285,6 +285,11 @@ a, a:hover {
 }
 
 
+.page {
+  padding: 20px;
+  margin: 10px 0;
+}
+
 
 .manga-icons.active {
   opacity: 1.0;
@@ -308,5 +313,18 @@ a, a:hover {
 .manga-library-icon{
   color: #0D47A1;
 }
+    
+h1, h2, h3 {
+    text-transform: uppercase;
+}
+
+h3 {
+    font-size: 18px;
+}
 
 
+@media (min-width: 468px) {
+    .container {
+        margin-top: 80px;
+    }
+}

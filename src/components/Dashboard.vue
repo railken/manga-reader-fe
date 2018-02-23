@@ -91,13 +91,10 @@ export default {
     h2 {
         margin: 10px 0;
     }
-    .container {
-        margin-top: 80px;
-    }
 
     .page {
         padding: 20px;
-        margin: 10px 0;
+        margin: 20px 0;
     }
 
     .cover {

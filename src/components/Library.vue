@@ -87,9 +87,6 @@ export default {
 
 <style scoped>
     
-    h1, h2, h3 {
-        text-transform: uppercase;
-    }
 
     h3 {
         font-size: 18px;
@@ -100,14 +97,7 @@ export default {
         overflow: hidden;
         text-overflow: ellipsis;
     }
-    .container {
-        margin-top: 80px;
-    }
 
-    .page {
-        padding: 20px;
-        margin: 10px 0;
-    }
 
     input {
         text-align: center;

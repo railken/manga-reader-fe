@@ -4,7 +4,7 @@
     <div class='container' v-if='manga'>
         <div class='paper page'>
             
-            <div class='fluid'>
+            <div class='fluid manga-container'>
                 <div><div class='cover-container'><img :src='manga.cover' class='img cover'></div></div>
                 <div class='info'>
                     <h1>
@@ -77,7 +77,7 @@
                 <h5>Volume {{ volume.volume }}</h5>
                 <div v-for="chapter in volume.chapters">
                     <router-link :to="{ name: 'manga.chapter', 'params': {slug: slug, chapter: chapter.number} }" class='url'>
-                        <span class='chapter-head-title'>{{ manga.title }} {{ chapter.number }}</span>
+                        <span class='chapter-head-title'>{{ chapter.number }}</span>
                     </router-link>
 
                     &nbsp;<span class='chapter-title'> {{ chapter.title }}</span>
@@ -202,17 +202,14 @@ export default {
     }
 
     h1 {
-        font-size: 2.1rem;
+        margin-top: 10px;
+        font-size: 1.7rem;
     }
 
     h5 {
         margin: 15px 0 5px 0;
         font-size: 14px;
         font-weight: bold;
-    }
-
-    .container {
-        margin-top: 80px;
     }
 
     .page {
@@ -251,4 +248,21 @@ export default {
     .chapter-title {
         opacity: 0.9;
     }
+
+
+    @media (max-width: 468px) {
+        .manga-container {
+            flex-wrap: wrap;
+        }
+
+
+        .manga-container > * {
+            width: 100%;
+        }
+
+       .cover-container {
+            width: 100%;
+        }
+    }
+
 </style>

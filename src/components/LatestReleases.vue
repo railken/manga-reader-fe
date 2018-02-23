@@ -85,22 +85,11 @@ export default {
 </script>
 
 <style scoped>
-    
-    h1, h2, h3 {
-        text-transform: uppercase;
-    }
-
-    h3 {
-        font-size: 18px;
-    }
 
     .container-title {
         width: 100%;
     }
 
-    .container {
-        margin-top: 80px;
-    }
 
     .page {
         padding: 20px;
