@@ -1,12 +1,39 @@
 <template>
-  <div>
+    <div>
+        <div class='container' v-if='manga'>
+            <div class='fluid'>
+                <div class='paper page'>
+                    
+                    <div class='manga-container'>
+                        <div><div class='cover-container'><img :src='manga.cover' class='img cover'></div></div>
+                        <div class='info'>
+                            <hr>
+                            <div class='info-basic'>
+                                <label>Aliases</label>
+                                {{ manga.aliases.join(", ") }}
+                            </div>
+                            <hr>
+                            <div class='info-basic'>
+                                <label>Genres</label>
+                                {{ manga.genres.join(", ") }}
+                            </div>
+                            <hr>
+                            <div class='info-basic'>
+                                <label>Artist</label>
+                                {{ manga.artist }}
+                            </div>
+                            <hr>
+                            <div class='info-basic'>
+                                <label>Author</label>
+                                {{ manga.author }}
+                            </div>
 
-    <div class='container' v-if='manga'>
-        <div class='paper page'>
-            
-            <div class='fluid manga-container'>
-                <div><div class='cover-container'><img :src='manga.cover' class='img cover'></div></div>
-                <div class='info'>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='paper page request manga-chapters-container'>
+
                     <h1>
                         {{ manga.title }}
 
@@ -29,6 +56,17 @@
 
                     </h1>
 
+                    <span v-if='!user'>
+                        You must be logged in order to add the manga to library
+                    </span>
+                    <hr>
+
+                    <div class='info info-basic'>
+                        <label>Synopsis</label>
+                        <div>{{ manga.overview }}</div>
+                    </div>
+
+
                     <div v-if='user && library === false'>
                         <i>Manga not in library</i>. <span class='url' v-on:click="addMangaToLibrary();">Click here to add to your library</span>
                     </div>
@@ -37,55 +75,34 @@
                     </div>
                     
                     <br>
-                    <div class='info-basic'>
-                        <label>Aliases</label>
-                        {{ manga.aliases.join(", ") }}
-                    </div>
-                    
-                    <div class='info-basic'>
-                        <label>Genres</label>
-                        {{ manga.genres.join(", ") }}
-                    </div>
 
-                    <div class='info-basic'>
-                        <label>Artist</label>
-                        {{ manga.artist }}
+                    <div v-if='!manga.follow'>
+                        <h3>Manga Reader</h3>
+                        <p>
+                            The following manga isn't listed as a readable manga. If you're interested on reading this you can simple click the button and wait untill the end of download.
+                        </p>
+                        <button class='btn btn-primary' v-on:click='request()'>Let me read this!</button>
                     </div>
+                    <div v-if='manga.follow'>
+                        <div v-if='manga.chapters.length === 0'>
+                            <p>There's no chapter available yet</p>
+                        </div>
 
-                    <div class='info-basic'>
-                        <label>Author</label>
-                        {{ manga.author }}
+                        <div v-if='manga.volumes' v-for='volume in manga.volumes.toArray()'>
+                            <h5>Volume {{ volume.volume }}</h5>
+                            <div v-for="chapter in volume.chapters">
+                                <router-link :to="{ name: 'manga.chapter', 'params': {slug: slug, chapter: chapter.number} }" class='url'>
+                                    <span class='chapter-head-title'>{{ chapter.number }}</span>
+                                </router-link>
+
+                                &nbsp;<span class='chapter-title'> {{ chapter.title }}</span>
+                           </div>
+                        </div>
                     </div>
-
-                    <div>{{ manga.overview }}</div>
                 </div>
             </div>
         </div>
-        <div class='paper page request' v-if='!manga.follow'>
-            <h3>Manga Reader</h3>
-            <p>
-                The following manga isn't listed as a readable manga. If you're interested on reading this you can simple click the button and wait untill the end of download.
-            </p>
-            <button class='btn btn-primary' v-on:click='request()'>Let me read this!</button>
-        </div>
-        <div class='paper page' v-if='manga.follow'>
-            <div v-if='manga.chapters.length === 0'>
-                <p>There's no chapter available yet</p>
-            </div>
-
-            <div v-if='manga.volumes' v-for='volume in manga.volumes.toArray()'>
-                <h5>Volume {{ volume.volume }}</h5>
-                <div v-for="chapter in volume.chapters">
-                    <router-link :to="{ name: 'manga.chapter', 'params': {slug: slug, chapter: chapter.number} }" class='url'>
-                        <span class='chapter-head-title'>{{ chapter.number }}</span>
-                    </router-link>
-
-                    &nbsp;<span class='chapter-title'> {{ chapter.title }}</span>
-               </div>
-            </div>
-        </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -225,7 +242,6 @@ export default {
     .cover-container {
         border: 1px solid #efefef;
         padding: 2px;
-        width: 200px;
         margin-right: 10px;
     }
 
@@ -250,20 +266,16 @@ export default {
         opacity: 0.9;
     }
 
+    .manga-container {
+        width: 220px;
+    }
+
+    .manga-chapters-container {
+        flex-grow: 1;
+        text-align: left;
+    }
 
     @media (max-width: 468px) {
-        .manga-container {
-            flex-wrap: wrap;
-        }
-
-
-        .manga-container > * {
-            width: 100%;
-        }
-
-       .cover-container {
-            width: 100%;
-        }
     }
 
 </style>
