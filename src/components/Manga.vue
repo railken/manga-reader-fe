@@ -172,6 +172,7 @@ export default {
                 });
             }).catch(response => {
                 // Redirect 404
+                this.$router.push({name: '404'});
             });
         },
 
