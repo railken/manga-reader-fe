@@ -17,6 +17,7 @@ import VueI18n from 'vue-i18n';
 import Logo from './components/Logo.vue'
 
 
+
 Vue.use(BootstrapVue);
 Vue.use(VueLocalStorage);
 Vue.use(Notifications);
@@ -89,6 +90,11 @@ var VueProvider = function(next) {
 	next();
 }
 Vue.component('logo', Logo);
+
+
+import LatestReleasesSlider from './components/LatestReleasesSlider.vue'
+Vue.component('latest-releases-slider', LatestReleasesSlider);
+
 
 
 var pl = new ProviderLoader();

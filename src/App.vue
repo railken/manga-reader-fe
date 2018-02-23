@@ -16,6 +16,7 @@ require('bootstrap/dist/js/bootstrap.bundle.js');
 require('bootstrap-vue/dist/bootstrap-vue.css');
 require('bootstrap-social/bootstrap-social.css');
 require('font-awesome/css/font-awesome.min.css');
+require('flickity/css/flickity.css');
 require('./assets/main.css');
 
 export default {

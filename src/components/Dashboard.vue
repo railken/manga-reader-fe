@@ -15,23 +15,12 @@
             </form>
         </div>
 
-        <div class='fluid content-dark'>
-            <h2>Last Releases</h2>
+        <div class='content-dark'>
+            <h2>Lastest Releases</h2>
+            <latest-releases-slider></latest-releases-slider>
         </div>
-        <div v-if="releases.length != 0" class='fluid releases content-dark'>
-            <div  v-for="manga in releases" class='release-manga'>
-                <router-link class='url' :to="{ name: 'manga', params: { slug: manga.slug }}">
-                    <div class='release-manga-container paper'>
-                        <div class='cover-container'>
-                            <img :src='manga.cover' class='img cover'>
-                        </div>
-                        <div class='info'>
-                            {{ manga.title }}
-                        </div>
-                    </div>
-                </router-link>
-            </div>
-        </div>
+        
+       
     </div>
   </div>
 </template>
@@ -40,27 +29,25 @@
 
 import { container } from '../services/container'
 import { MangaApi } from '../api/MangaApi';
+import Flickity from 'vue-flickity';
 
 export default {
+    components: {
+        Flickity
+    },
+
     data () {
         return {
             manga: null,
             slug: null,
             query: '',
-            releases: []
+            releases: [],
         };
     },
     props: ['user'],
     methods: {
         load () {
 
-
-            this.api.getLatestReleases({show: 20, page: 1}).then(response => {
-                this.releases = response.body.resources;
-            }).catch(response => {
-
-
-            });
         },
 
         search () {
@@ -75,11 +62,21 @@ export default {
 
         },
         request () {
+        },
+
+        next() {
+            this.$refs.flickity.next();
+        },
+
+        previous() {
+            this.$refs.flickity.previous();
         }
     },
     mounted () {
         this.api = new MangaApi();
         this.load();
+
+
     }
 }
 </script>
@@ -89,6 +86,10 @@ export default {
     h1, h2, h3 {
         text-transform: uppercase;
 
+    }
+
+    h2 {
+        margin: 10px 0;
     }
     .container {
         margin-top: 80px;
@@ -123,30 +124,11 @@ export default {
     }   
 
     .content-dark {
-        padding: 20px 10px;
+        padding: 0px 10px;
         background: #3d3d47;
         border: 1px solid #3d3d47;
         color: white;
     }
-    .release-manga-container {
-        text-align: center;
-        padding: 5px;
-        margin: 0 5px;
-        max-width: 150px;
-        height: 260px;
-    }
 
-    .release-manga {
-        padding: 5px;
-    }
-    .release-manga-container img{
-        width: 140px;
-        height: 200px;
-    }
-
-    .releases {
-        overflow-x: scroll;
-        overflow-y: hidden;
-    }
 
 </style>
