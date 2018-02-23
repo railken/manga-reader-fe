@@ -5,7 +5,7 @@
             <div class='paper page request'>
                 <form v-on:submit.prevent="search">
                     <div  class='fluid'>
-                        <input class='form-control' placeholder='Type your search here' v-model='query'>
+                        <input class='form-control' placeholder='Search a manga' v-model='query'>
                         
                         <button class='btn btn-primary' type='submit'>Search</button>
                     </div>
