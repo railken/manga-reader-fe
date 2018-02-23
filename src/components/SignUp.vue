@@ -1,10 +1,10 @@
 <template>
     <div class='container full-height '>
-        <div>
-            <div class='paper content container-signin'>
+        <div class='container-out'>
+            <div class='paper content'>
                 <logo :type="'bg'"></logo>
             </div>
-            <div class='paper content container-signin'>
+            <div class='paper content'>
                 <div >
                     <!--<img class='logo' src='../assets/logo.png'>-->
                     
@@ -41,7 +41,7 @@
                 <p>{{ $t('auth.signup.confirmation_email.label') }} <router-link :to="{ name: 'sign-up.email-request'}" class='url url-light'>{{ $t('auth.signup.confirmation_email.url') }}</router-link></p>
             </div>
 
-            <div class='paper content container-signin'>
+            <div class='paper content'>
                 <div class='box'>
                     <div class='container-login-provider fluid fluid-center'>
                         <div class='login-provider-title'> {{ $t("auth.signup.providers") }}</div>
@@ -111,9 +111,6 @@ export default {
         max-width: 768px;
         margin: 0 auto;
     }
-    .container-signin {
-        min-width: 298px;
-    }
     .content {
         padding: 20px;
         background: #3d3d47;
@@ -143,12 +140,6 @@ export default {
 
     .alert {
         font-size: 15px;
-    }
-
-    .container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
 
     .btn-icon {

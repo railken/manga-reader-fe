@@ -328,3 +328,17 @@ h3 {
         margin-top: 80px;
     }
 }
+
+.container {    
+    display: flex;
+    justify-content: center;
+}
+
+.container > * {
+  flex-grow: 1;
+}
+
+.container-out {
+  max-width: 468px;
+  margin: 0 auto;
+}

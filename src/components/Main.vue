@@ -167,4 +167,7 @@
 	.character-right {
 		right: 0;
 	}
+
+
+
 </style>

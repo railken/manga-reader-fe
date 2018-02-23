@@ -4,23 +4,24 @@
 
     </div>
     <div class='container'>
-        <div class='paper page request'>
-            <form v-on:submit.prevent="search" class='fluid'>
-               
-                <input class='form-control' placeholder='Type your search here' v-model='query'>
-                
-                <button class='btn btn-primary' type='submit'>Search</button>
-                
+        <div>
+            <div class='paper page request'>
+                <form v-on:submit.prevent="search" class='fluid'>
+                   
+                    <input class='form-control' placeholder='Type your search here' v-model='query'>
+                    
+                    <button class='btn btn-primary' type='submit'>Search</button>
+                    
 
-            </form>
-        </div>
+                </form>
+            </div>
 
-        <div class='content-dark'>
-            <h2>Lastest Releases</h2>
-            <latest-releases-slider></latest-releases-slider>
+            <div class='content-dark'>
+                <h2>Lastest Releases</h2>
+                <latest-releases-slider></latest-releases-slider>
+            </div>
+            
         </div>
-        
-       
     </div>
   </div>
 </template>

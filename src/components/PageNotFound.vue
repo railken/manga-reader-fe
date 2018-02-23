@@ -1,12 +1,8 @@
 <template>
     <div class='container full-height '>
-        <div>
-
+        <div class='container-out'>
             <div class='paper content'>
-                <router-link :to="{ name: 'dashboard'}">
-                        
-                    <h2 class='logo'>Manga Coldray</h2>
-                </router-link>
+                <logo :type="'bg'"></logo>
             </div>
 
 
@@ -67,16 +63,13 @@ export default {
 
 <style scoped>
 
-
-    p {
-        margin: 10px 0;
+    .container-loader > div {
+        background-color: white;
     }
+
     .page {
         max-width: 768px;
         margin: 0 auto;
-    }
-    .container-signin {
-        min-width: 298px;
     }
     .content {
         padding: 20px;
@@ -86,59 +79,4 @@ export default {
         color: white;
     }
     
-    .form-control {
-        color: #dfdeea;
-    }
-
-    .container-login-provider .btn {
-        margin: 0 5px;
-    }
-    
-    .login-provider-title {
-        margin-right: 15px;
-    }
-
-    .title {
-        font-size: 23px;
-        text-align: center;
-        padding: 10px;
-        font-weight: bold;
-    }
-
-    .alert {
-        font-size: 15px;
-    }
-
-    .container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .btn-icon {
-        width: 38px;
-        height: 38px;
-    }
-
-    .btn-gitlab {
-        background: #554488;
-        color: white;
-    }
-
-    .btn-gitlab:hover {
-        background: #2b2343 !important;
-        color: white;
-    }
-
-    .btn-social > :first-child {
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 32px;
-        line-height: 34px;
-        font-size: 1.6em;
-        text-align: center;
-        border-right: 1px solid rgba(0,0,0,0.2);
-    }
 </style>

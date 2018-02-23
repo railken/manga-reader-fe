@@ -1,10 +1,10 @@
 <template>
     <div class='container full-height '>
-        <div>
-            <div class='paper content container-signin'>
+        <div class='container-out'>
+            <div class='paper content'>
                 <logo :type="'bg'"></logo>
             </div>
-            <div class='paper content container-signin'>
+            <div class='paper content container-out'>
         		<div v-if='loading'>
                     <div class='container-loader'>
                         <div class='sk-rotating-plane'></div>
@@ -65,19 +65,6 @@
         background-color: white;
     }
 
-    .container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-
-    body, main {
-        background-color: #52525d;
-    }
-    .container-signin {
-        min-width: 298px;
-    }
     .content {
         padding: 20px;
         background: #3d3d47;

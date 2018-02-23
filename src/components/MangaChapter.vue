@@ -112,12 +112,6 @@ export default {
     .nav {
         font-size: 18px;
     }
-
-    .title
-    .container {
-        margin-top: 30px;
-    }
-
     .select-chapter {
         width: auto;
     }

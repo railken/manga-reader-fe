@@ -1,6 +1,6 @@
 <template>
 	<div class='container full-height'>
-        <div class='paper content container-signin'>
+        <div class='paper content container-out'>
     		<div v-if='loading'>
                 <div class='container-loader'>
                     <div class='sk-rotating-plane'></div>

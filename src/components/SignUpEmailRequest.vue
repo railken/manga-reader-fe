@@ -2,11 +2,11 @@
 
 
     <div class='container full-height '>
-        <div>
-            <div class='paper content container-signin'>
+        <div class='container-out'>
+            <div class='paper content'>
                 <logo :type="'bg'"></logo>
             </div>
-            <div class='paper content container-signin'>
+            <div class='paper content'>
                 <div >
                     
                     <h4>{{ $t("auth.signup-email-request.title") }}</h4>
@@ -72,9 +72,6 @@ export default {
         max-width: 768px;
         margin: 0 auto;
     }
-    .container-signin {
-        min-width: 298px;
-    }
     .content {
         padding: 20px;
         background: #3d3d47;
@@ -104,12 +101,6 @@ export default {
 
     .alert {
         font-size: 15px;
-    }
-
-    .container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
 
     .btn-icon {
