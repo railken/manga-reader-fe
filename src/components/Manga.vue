@@ -1,5 +1,11 @@
 <template>
     <div>
+
+        <div v-if='!manga'>
+            <div class='container-loader'>
+                <div class='sk-rotating-plane'></div>
+            </div>
+        </div>
         <div class='container' v-if='manga'>
             <div class='fluid'>
                 <div class='paper page'>
@@ -113,7 +119,10 @@ import { LibraryApi } from '../api/LibraryApi';
 
 import Collection from 'collect.js';
 
+require('spinkit/css/spinners/1-rotating-plane.css');
+
 export default {
+
     data () {
         return {
             manga: null,

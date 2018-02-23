@@ -58,13 +58,6 @@
 
 <style scoped>
 
-    .container-loader {
-        margin: 100px auto;
-    }
-    .container-loader > div {
-        background-color: white;
-    }
-
     .content {
         padding: 20px;
         background: #3d3d47;

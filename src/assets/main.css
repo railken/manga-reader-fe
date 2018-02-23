@@ -342,3 +342,10 @@ h3 {
   max-width: 468px;
   margin: 0 auto;
 }
+
+.container-loader {
+    margin: 100px auto;
+}
+.container-loader > div {
+    background-color: white;
+}

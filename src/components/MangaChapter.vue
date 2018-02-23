@@ -13,6 +13,11 @@
 
 
 
+    <div v-if='!manga || !chapter'>
+        <div class='container-loader'>
+            <div class='sk-rotating-plane'></div>
+        </div>
+    </div>
     <div class='container' v-if='manga && chapter'>
         <div>
             <div class='page paper'>
@@ -54,6 +59,8 @@
 
 import { container } from '../services/container'
 import { MangaApi } from '../api/MangaApi';
+
+require('spinkit/css/spinners/1-rotating-plane.css');
 
 export default {
     data () {

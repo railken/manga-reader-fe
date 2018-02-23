@@ -2,44 +2,59 @@
     <div>
 
         <div class='container'>
-            <div class='paper page request'>
-                <form v-on:submit.prevent="search">
-                    <div  class='fluid'>
-                        <input class='form-control' placeholder='Search a manga' v-model='query'>
-                        
-                        <button class='btn btn-primary' type='submit'>Search</button>
-                    </div>
-                    <p>
-
-                    </p>
-                    <p>
-                        Tags
-                    </p>
-                </form>
-            </div>
-
-            <div v-if="resources.length != 0">
-                <div  v-for="manga in resources" class="page paper paper-hover manga-container">
-                    <div class='fluid'>
-                        <div class='cover-container'><router-link class='url' :to="{ name: 'manga', params: { slug: manga.slug }}"><img :src='manga.cover' class='img cover'></router-link></div>
-                        <div class='info'>
-                            <h3>
-                                <router-link class='url' :to="{ name: 'manga', params: { slug: manga.slug }}">{{ manga.title }}</router-link>
-                                <span v-if='manga.follow' class='fa fa-cloud-download manga-followed-icon' title='All new scans will be automatically downloaded'></span>
-                            </h3>
+            <div>
+                <div class='paper page request'>
+                    <form v-on:submit.prevent="search">
+                        <div  class='fluid'>
+                            <input class='form-control' placeholder='Search a manga' v-model='query'>
                             
-                            <div class='info-basic' v-if='manga.genres'>
-                                {{ manga.genres.join(", ") }}
-                            </div>
+                            <button class='btn btn-primary' type='submit'>Search</button>
+                        </div>
+                        <p>
 
-                            <div class='info-basic' v-if='manga.aliases'>
-                                <label>Aliases</label>
-                                {{ manga.aliases.join(", ") }}
+                        </p>
+                        <p>
+                            Tags
+                        </p>
+                    </form>
+                </div>
+
+                <div v-if="loading && resources.length === 0">
+                    <div class='container-loader'>
+                        <div class='sk-rotating-plane'></div>
+                    </div>
+                </div>
+                <div v-if="resources.length != 0">
+                    <div  v-for="manga in resources" class="page paper paper-hover manga-container">
+                        <div class='fluid'>
+                            <div class='cover-container'><router-link class='url' :to="{ name: 'manga', params: { slug: manga.slug }}"><img :src='manga.cover' class='img cover'></router-link></div>
+                            <div class='info'>
+                                <h3>
+                                    <router-link class='url' :to="{ name: 'manga', params: { slug: manga.slug }}">{{ manga.title }}</router-link>
+                                    <span v-if='manga.follow' class='fa fa-cloud-download manga-followed-icon' title='All new scans will be automatically downloaded'></span>
+                                </h3>
+                                
+                                <div class='info-basic' v-if='manga.genres'>
+                                    {{ manga.genres.join(", ") }}
+                                </div>
+
+                                <div class='info-basic' v-if='manga.aliases'>
+                                    <label>Aliases</label>
+                                    {{ manga.aliases.join(", ") }}
+                                </div>
+                                <div>{{ manga.overview }}</div>
                             </div>
-                            <div>{{ manga.overview }}</div>
                         </div>
                     </div>
                 </div>
+
+
+                <div v-if="loading && resources.length > 0">
+                    <div class='container-loader'>
+                        <div class='sk-rotating-plane'></div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -49,6 +64,8 @@
 
 import { container } from '../services/container'
 import { MangaApi } from '../api/MangaApi';
+
+require('spinkit/css/spinners/1-rotating-plane.css');
 
 export default {
     data () {
