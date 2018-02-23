@@ -64,6 +64,7 @@ export default {
     props: ['user'],
     methods: {
         load () {
+            this.chapter = null;
 
             this.service.get(this.slug).then(response => {
                 var manga = response.body.resource;

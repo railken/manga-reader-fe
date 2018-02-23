@@ -7,16 +7,21 @@
                             <img :src='manga.cover' class='img cover'>
                         </div>
 
-                        <div class='info info-title'>
-                            <router-link class='url' :to="{ name: 'manga', params: { slug: manga.slug }}">
-                                {{ manga.title }}
+                        <div>
+                            <router-link class='url info-title' :to="{ name: 'manga', params: { slug: manga.slug }}">
+                                <span class='info'>{{ manga.title }}</span>
                             </router-link>
                         </div>
 
-                        <div class='info' v-if='manga.last_chapter'>
-                            <router-link class='url' :to="{ name: 'manga', params: { slug: manga.slug }}">
-                                Chapter {{ manga.last_chapter.number }}
+                        <div v-if='manga.last_chapter'>
+                            <router-link class='url' :to="{ name: 'manga.chapter', params: { slug: manga.slug, chapter: manga.last_chapter.number }}">
+                                <span class='info'>Chapter {{ manga.last_chapter.number }}</span>
                             </router-link>
+
+
+                            <span class='info' v-if='manga.last_chapter.released_at'>
+                                 {{ moment(manga.last_chapter.released_at).format('D-MM-Y') }}
+                            </span>
                         </div>
                     </div>
             </div>
@@ -74,6 +79,9 @@ export default {
             this.$refs.flickity.next();
         },
 
+        moment(date) {
+            return container.get('date')(date);
+        },
         previous() {
             this.$refs.flickity.previous();
         }
@@ -111,14 +119,18 @@ export default {
 
 
     .info {
+        display: block;
         text-transform: uppercase;
-        word-wrap: wrap;
-        background: white;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        color: #212529;
     }
 
     .info-title {
         font-weight: bold;
     }
+
     .buttons {
         margin: 10px 0;
     }
