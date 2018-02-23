@@ -41,7 +41,8 @@
             <img v-for='resource in chapter.resources' :src='resource'>
         </div>
         <div class='page paper'>
-            <button class='btn btn-primary' v-on:click='moveTo(parseInt(number)+1)'>Next Page</button>
+            <button class='btn btn-primary' v-on:click='moveTo(chapter.prev ? chapter.prev.number : null)'>Previous Chapter</button>
+            <button class='btn btn-primary' v-on:click='moveTo(chapter.next ? chapter.next.number : null)'>Next Chapter</button>
         </div>  
     </div>
   </div>
