@@ -99,6 +99,13 @@ ul,li{
     min-height: 100vh;
 }
 
+.text-ellips {
+  
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .w100 {
   width: 100%;
 }

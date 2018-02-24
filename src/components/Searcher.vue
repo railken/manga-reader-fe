@@ -24,25 +24,24 @@
                         <div class='sk-rotating-plane'></div>
                     </div>
                 </div>
-                <div v-if="resources.length != 0">
-                    <div  v-for="manga in resources" class="page paper paper-hover manga-container">
-                        <div class='fluid'>
-                            <div class='cover-container'><router-link class='url' :to="{ name: 'manga', params: { slug: manga.slug }}"><img :src='manga.cover' class='img cover'></router-link></div>
-                            <div class='info'>
-                                <h3>
-                                    <router-link class='url' :to="{ name: 'manga', params: { slug: manga.slug }}">{{ manga.title }}</router-link>
-                                    <span v-if='manga.follow' class='fa fa-cloud-download manga-followed-icon' title='All new scans will be automatically downloaded'></span>
-                                </h3>
-                                
-                                <div class='info-basic' v-if='manga.genres'>
-                                    {{ manga.genres.join(", ") }}
-                                </div>
+                <div v-if="resources.length != 0" class='fluid fluid-wrap'>
+                    <div  v-for="manga in resources" class="col-sm-4">
 
-                                <div class='info-basic' v-if='manga.aliases'>
-                                    <label>Aliases</label>
-                                    {{ manga.aliases.join(", ") }}
+                        <div class='page paper paper-hover manga-container '>
+
+                            <h5>
+                                <router-link class='url' :to="{ name: 'manga', params: { slug: manga.slug }}">{{ manga.title }}</router-link>
+                                <!--<span v-if='manga.follow' class='fa fa-cloud-download manga-followed-icon' title='All new scans will be automatically downloaded'></span>-->
+                            </h5>
+
+                            <div class='info-basic text-ellips' v-if='manga.genres'>
+                                {{ manga.genres.join(", ") }}
+                            </div>
+                            <div class='fluid'>
+                                <div class='cover-container'><router-link class='url' :to="{ name: 'manga', params: { slug: manga.slug }}"><img :src='manga.cover' class='img cover'></router-link></div>
+                                <div class='info info-overview'>
+                                    <div>{{ manga.overview }}</div>
                                 </div>
-                                <div>{{ manga.overview }}</div>
                             </div>
                         </div>
                     </div>
@@ -158,6 +157,10 @@ export default {
 
 <style scoped>
 
+    
+    .col-sm-4 {
+        padding:0 5px;
+    }
 
     .page {
         padding: 20px;
@@ -171,13 +174,14 @@ export default {
     .cover-container {
         border: 1px solid #efefef;
         padding: 2px;
-        max-width: 160px;
         width: 100%;
         margin-right: 10px;
     }
 
     .cover {
         width: 100%;
+        width: 160px;
+        height: 220px;
     }
 
     .info label {
@@ -196,6 +200,10 @@ export default {
 
     .manga-container {
         display: block;
+    }
+
+    .info-overview {
+        font-size: 11px;
     }
 
     @media (max-width: 468px) {
