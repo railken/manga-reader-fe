@@ -1,7 +1,8 @@
 {
 	"errors": {
 		"user_password_not_valid": "Password invalid. Minimum 8 characters",
-		"user_password_old_not_valid": "Old password wrong"
+		"user_password_old_not_valid": "Old password wrong",
+		"user_password_current_not_valid": "Password wrong"
 	},
 	"auth": {
 		"provider": {
@@ -56,7 +57,11 @@
 		"settings": {
 			"account": {
 				"password_old": "Old password",
-				"password": "New Password"
+				"password": "New Password",
+				"delete": {
+					"verify": "Type 'delete my account'",
+					"password": "Your current password"
+				}
 			}
 		}
 	},
