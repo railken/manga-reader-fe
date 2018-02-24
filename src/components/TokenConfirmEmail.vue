@@ -41,7 +41,7 @@
         	container.get('services.oauth').confirmEmail({token: this.$route.params.token}).then(response => {
     			window.location.href = "/";
     		}).catch(error => {
-                this.error = this.$t(error.body.code.toLowerCase());
+                this.error = this.$t("errors."+error.body.code.toLowerCase());
                 // container.get('router').push({ name: 'sign-in'});
                 this.loading = false;
     		

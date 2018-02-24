@@ -6,12 +6,30 @@
             </div>
             <div class='paper content'>
                 <div class='text-center'>
-                    <i class='fa fa-send icon'></i>
-                    <br><br>
                     <p>
                         {{ $t("auth.signup-confirmed.message") }}
                     </p>
+                </div>
 
+                <div>
+
+                    <form class='form' method="POST" v-on:submit.prevent="confirm();">
+                    <p>
+
+                        <div class='error text-error'>
+                            {{ error }}
+                        </div>
+
+                        <div class='form-group'>
+                            <input type='text' class='form-control' v-model="form.token" placeholder=' ' required>
+                            <span class="form-highlight"></span>
+                            <label>{{ $t("auth.signup.token") }}</label>
+                        </div>
+                        <button class='btn btn-block btn-primary'>{{ $t("auth.signup.confirm") }}</button>
+                    </p>
+                    </form>
+                </div>
+                <div>
                     <p>
                         {{ $t('auth.signin.confirmation_email.label') }}
                         <router-link :to="{ name: 'sign-up.email-request'}" class='url url-light'>{{ $t('auth.signin.confirmation_email.url') }}</router-link>
@@ -31,25 +49,20 @@ import { container } from '../services/container'
 export default {
     data () {
         return {
-            nav: false,
-            form: {},
+            form: { token : null},
             errors: []
         }
     },
     methods: {
-        login (provider) {
-            container.get('services.oauth').providerSignIn(provider);
-        },
-        register () {
+        confirm () {
 
-            container.get('services.oauth').signUp(this.form).then(response => {
-                alert('registered');
-            }).catch(response => {
-                var self = this;
-                this.errors = response.body.errors.map(function(error) {
-                    return {label: error.label, message: self.$t(error.code.toLowerCase())};
-                });
-                console.log(this.errors);
+
+            container.get('services.oauth').confirmEmail({token: this.form.token}).then(response => {
+                window.location.href = "/";
+            }).catch(error => {
+                this.error = this.$t(error.body.code.toLowerCase());
+                // container.get('router').push({ name: 'sign-in'});
+            
             });
         }
     },
@@ -102,31 +115,4 @@ export default {
         font-size: 15px;
     }
 
-
-    .btn-icon {
-        width: 38px;
-        height: 38px;
-    }
-
-    .btn-gitlab {
-        background: #554488;
-        color: white;
-    }
-
-    .btn-gitlab:hover {
-        background: #2b2343 !important;
-        color: white;
-    }
-
-    .btn-social > :first-child {
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 32px;
-        line-height: 34px;
-        font-size: 1.6em;
-        text-align: center;
-        border-right: 1px solid rgba(0,0,0,0.2);
-    }
 </style>

@@ -1,4 +1,7 @@
 {
+	"errors": {
+		"user_password_not_valid": "Password invalid"
+	},
 	"auth": {
 		"provider": {
 			"email_not_found": "Login failed. An email address is required. Please add one and try again.",
@@ -15,7 +18,7 @@
 				"label": "Didn't receive a confirmation email?",
 				"url": "Request a new one"
 			},
-				"signup": {
+			"signup": {
 				"label": "No account?",
 				"url": "Register one here"
 			},
@@ -34,7 +37,9 @@
 			"confirmation_email": {
 				"label": "Didn't receive a confirmation email?",
 				"url": "Request a new one"
-			}
+			},
+			"token": "Code",
+			"confirm": "Confirm"
 		},
 		"signup-confirmed": {
 			"message": "We sent an email. Check your inbox"
@@ -45,6 +50,7 @@
 			"button": "Request"
 		}
 	},
+
 	"signup.confirm_email_token_invalid": "Token incorrect or expired",
 	"page": {
 		"404": {

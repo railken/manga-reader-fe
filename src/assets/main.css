@@ -176,9 +176,15 @@ ul,li{
 }
 
 
-.error {
+.error, .message-error {
   color: #E53935;
 }
+
+.message-error {
+  margin-bottom: 10px;
+  display: block;
+}
+
 .text-error {
   font-size: 14px;
   

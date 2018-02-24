@@ -92,7 +92,7 @@ export default {
             }).catch(response => {
                 var self = this;
                 this.errors = response.body.errors.map(function(error) {
-                    return {label: error.label, message: self.$t(error.code.toLowerCase())};
+                    return {label: error.label, message: self.$t("errors."+error.code.toLowerCase())};
                 });
             });
         }
