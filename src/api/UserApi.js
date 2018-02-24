@@ -9,6 +9,7 @@ export class UserApi
 	constructor()
 	{
 		this.url = container.get('env').api.url;
+		this.access_token = container.get('services.oauth') ? container.get('services.oauth').getToken() : null;
 	}
 
 	/**
@@ -102,4 +103,15 @@ export class UserApi
 		return Vue.http.post(this.url+"/request-confirm-email", params);
 	}
 
+	/**
+	 * Change password
+	 *
+	 * @param {Object} params
+	 *
+	 * @return {Promise}
+	 */
+	changePassword(params)
+	{
+		return Vue.http.post(this.url+"/account/password", params, { headers: { Authorization: "Bearer "+this.access_token }});
+	}
 };

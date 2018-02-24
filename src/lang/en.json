@@ -1,6 +1,7 @@
 {
 	"errors": {
-		"user_password_not_valid": "Password invalid"
+		"user_password_not_valid": "Password invalid. Minimum 8 characters",
+		"user_password_old_not_valid": "Old password wrong"
 	},
 	"auth": {
 		"provider": {
@@ -48,6 +49,15 @@
 			"title": "Resend confirmation email",
 			"message": "Resend the confirmation email. (Every 15 minutes)",
 			"button": "Request"
+		}
+	},
+
+	"user": {
+		"settings": {
+			"account": {
+				"password_old": "Old password",
+				"password": "New Password"
+			}
 		}
 	},
 

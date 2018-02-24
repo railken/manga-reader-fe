@@ -22,8 +22,8 @@
 						<img width='32' height='32' class='logo' :src='user.avatar'>
 					</div>
 					<div class='dropdown-content paper' v-on-clickaway="fade" v-if='dropdown == true'>
-		    			<router-link  :to="{ name: 'dashboard' }" class='url header-url'>Dashboard</router-link>
 		    			<router-link  :to="{ name: 'library' }" class='url header-url'>Library</router-link>
+		    			<router-link  :to="{ name: 'user.settings.profile' }" class='url header-url'>Settings</router-link>
 		    			<span class='url header-url' v-on:click="logout()">Logout</span>
 		    		</div>
 		    	</div>
@@ -35,7 +35,7 @@
 		</div>
 	</div>
 
-    <router-view/>
+    <router-view :user='user'/>
 
     <!--<div class='character character-right'><img src='../assets/characters/rokka_no_yuusha.png'></div>-->
   </div>

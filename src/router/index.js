@@ -16,6 +16,10 @@ import Searcher from '@/components/Searcher'
 import Library from '@/components/Library'
 import LatestReleases from '@/components/LatestReleases'
 import PageNotFound from '@/components/PageNotFound'
+import UserSettings from '@/components/UserSettings'
+import UserSettingsProfile from '@/components/UserSettingsProfile'
+import UserSettingsEmail from '@/components/UserSettingsEmail'
+import UserSettingsAccount from '@/components/UserSettingsAccount'
 import Guard from '../middlewares/Guard'
 
 
@@ -69,6 +73,30 @@ export default new Router({
 					component: MangaChapter,
 
 				},
+				{
+					path: '/user/settings',
+					name: 'user.settings',
+					component: UserSettings,
+					beforeEnter: Guard.auth,
+					children: [
+						{
+							path: 'profile',
+							name: 'user.settings.profile',
+							component: UserSettingsProfile,
+						},
+						{
+							path: 'email',
+							name: 'user.settings.email',
+							component: UserSettingsEmail,
+						},
+						{
+							path: 'account',
+							name: 'user.settings.account',
+							component: UserSettingsAccount,
+						},
+					]
+				},
+
 			]
 		},		
 		{
