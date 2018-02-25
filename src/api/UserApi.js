@@ -139,4 +139,16 @@ export class UserApi
 		return Vue.http.post(this.url+"/account/email", params, { headers: { Authorization: "Bearer "+this.access_token }});
 	}
 
+
+	/**
+	 * Change username
+	 *
+	 * @param {Object} params
+	 *
+	 * @return {Promise}
+	 */
+	changeUsername(params)
+	{
+		return Vue.http.post(this.url+"/account/username", params, { headers: { Authorization: "Bearer "+this.access_token }});
+	}
 };

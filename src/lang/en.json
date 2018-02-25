@@ -62,7 +62,8 @@
 					"verify": "Type 'delete my account'",
 					"password": "Your current password"
 				},
-				"email": "Email"
+				"email": "Email",
+				"username": "Username"
 			}
 		}
 	},
