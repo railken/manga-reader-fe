@@ -2,7 +2,10 @@
   <div>
     <div v-if='user'>
         <div>
-            Change password
+            <ul>
+                <li>Update Username</li>
+                <li>Update Avatar</li>
+            </ul>
         </div>
     </div>
   </div>

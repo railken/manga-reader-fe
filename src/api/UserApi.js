@@ -127,4 +127,16 @@ export class UserApi
 		return Vue.http.delete(this.url+"/account", { body: params, headers: { Authorization: "Bearer "+this.access_token }});
 	}
 
+	/**
+	 * Change email
+	 *
+	 * @param {Object} params
+	 *
+	 * @return {Promise}
+	 */
+	changeEmail(params)
+	{
+		return Vue.http.post(this.url+"/account/email", params, { headers: { Authorization: "Bearer "+this.access_token }});
+	}
+
 };
